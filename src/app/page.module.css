@@ -1,0 +1,13 @@
+.main {
+}
+
+.navigation {
+    padding-bottom: 10rem;
+}
+
+.sections {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 10rem;
+    padding: 0 1rem;
+}
