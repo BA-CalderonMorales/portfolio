@@ -5,8 +5,12 @@ import sectionStyles from "@/app/styles/components/Views/section.module.css";
 import { Navigation } from "@/app/components/Views/Navigation";
 import { observer } from "mobx-react";
 import { WorkHistorySection } from "@/app/components/Views/Section/WorkHistorySection";
+import { useContext } from "react";
+import { AppContext } from "@/app/context";
 
 const WorkHistory = observer(() : JSX.Element => {
+
+    const { navigationViewModel } = useContext(AppContext);
 
     return (
 
@@ -14,7 +18,7 @@ const WorkHistory = observer(() : JSX.Element => {
 
             <div className={sectionStyles.navigation}>
 
-                <Navigation />
+                <Navigation viewModel={navigationViewModel}/>
 
             </div>
 

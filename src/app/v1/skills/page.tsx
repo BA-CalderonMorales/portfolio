@@ -5,8 +5,12 @@ import sectionStyles from "@/app/styles/components/Views/section.module.css";
 import { Navigation } from "@/app/components/Views/Navigation";
 import { observer } from "mobx-react";
 import { SkillsSection } from "@/app/components/Views/Section/SkillsSection";
+import { useContext } from "react";
+import { AppContext } from "@/app/context";
 
 const Skills = observer(() : JSX.Element => {
+
+    const { navigationViewModel } = useContext(AppContext);
 
     return (
 
@@ -14,7 +18,7 @@ const Skills = observer(() : JSX.Element => {
 
             <div className={sectionStyles.navigation}>
 
-                <Navigation />
+                <Navigation viewModel={navigationViewModel} />
 
             </div>
 
