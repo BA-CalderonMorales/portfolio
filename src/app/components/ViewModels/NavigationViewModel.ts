@@ -1,18 +1,23 @@
 import {makeObservable, observable} from "mobx";
 
-export interface Link {
+export interface NavLink {
     id: string,
     url: string,
     text: string
 }
 
+export interface Navigation {
+    links: NavLink[];
+    brand: string;
+}
+
 export class NavigationViewModel {
 
-    links: Link[];
+    links: NavLink[];
 
     brand: string = "My Portfolio";
 
-    constructor(links: Link[]) {
+    constructor(links: NavLink[]) {
         this.links = links;
 
         makeObservable(this, {
@@ -24,11 +29,3 @@ export class NavigationViewModel {
     }
 
 }
-
-export const navigationViewModel = new NavigationViewModel([
-    {id: "home", url: "/", text: "Home"},
-    {id: "about", url: "#about", text: "About"},
-    {id: "work-history", url: "#work-history", text: "Work History"},
-    {id: "skills", url: "#skills", text: "Skills"},
-    {id: "contact", url: "#contact", text: "Contact"}
-]);

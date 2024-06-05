@@ -1,11 +1,15 @@
-import { observer } from "mobx-react";
-import { NavigationViewModel, Link } from "../ViewModels/NavigationViewModel";
+import Link from "next/link";
+import { NavigationViewModel, NavLink } from "@/app/components/ViewModels/NavigationViewModel.ts";
 
-export const Navigation = observer(({ viewModel }: { viewModel: NavigationViewModel }) : JSX.Element => {
+export const Navigation = ({ viewModel } : { viewModel : NavigationViewModel | null | undefined }) : JSX.Element => {
+
+    if (!viewModel || !viewModel.links || viewModel.links.length === 0) return (
+        <nav data-testid="navigation-content"></nav>
+    );
 
     return (
 
-        <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top" data-testid="navigation-content">
 
             <div className="container-fluid">
 
@@ -23,13 +27,13 @@ export const Navigation = observer(({ viewModel }: { viewModel: NavigationViewMo
 
                     <ul className="navbar-nav">
 
-                        {viewModel.links.map(( link: Link ) => (
+                        {viewModel.links.map(( link: NavLink ) => (
 
                             <li key={link.id} className="nav-item">
 
-                                <a className="nav-link" href={link.url}>
+                                <Link className="nav-link" href={link.url}>
                                     {link.text}
-                                </a>
+                                </Link>
 
                             </li>
                         ))}
@@ -45,4 +49,4 @@ export const Navigation = observer(({ viewModel }: { viewModel: NavigationViewMo
 
     );
 
-});
+};
