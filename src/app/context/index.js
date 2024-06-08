@@ -14,11 +14,11 @@ const AppProvider = ({children}) => {
     useEffect(() => {
 
         // set the global context state here...
-        setGlobalState({
-            ...globalState,
+        setGlobalState((prevGlobalState) => ({
+            ...prevGlobalState,
             navigationViewModel: navigationViewModel,
             sectionViewModels: sectionViewModels
-        });
+        }));
 
     }, []);
 
