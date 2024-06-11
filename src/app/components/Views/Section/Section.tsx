@@ -10,9 +10,9 @@ export const Section = observer(({viewModel}: { viewModel: SectionType }): JSX.E
 
         <section id={viewModel.id} className={styles.section}>
 
-            <h2>{viewModel.title}</h2>
+            <h2 className={styles.sectionHeader }>{viewModel.title}</h2>
 
-            <p>{viewModel.content}</p>
+            <p className={styles.sectionParagraph}>{viewModel.content}</p>
 
         </section>
 

@@ -1,11 +1,33 @@
-.section {
+.sectionWrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 40rem;
     padding: 10rem;
     margin: 1rem;
     border-radius: 10px;
     background-color: #f5f5f5;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sectionFullHeight {
+    height: 90vh;
+}
+
+.section {
+    display: grid;
+    grid-template-rows: repeat(2, 2fr);
+    justify-content: center;
+    align-items: center;
+}
+
+.sectionHeader {
+    display: flex;
+    justify-content: center;
+}
+
+.sectionParagraph {
+    display: block;
+    text-align: center;
 }

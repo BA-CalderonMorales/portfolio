@@ -21,7 +21,7 @@ export const HomeLifeSection = () : JSX.Element => {
 
     
     return (
-        <div className={sectionStyles.section}>
+        <div className={sectionStyles.sectionWrapper}>
 
             <Section viewModel={homeLifeSection} />
 

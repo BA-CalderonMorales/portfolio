@@ -11,7 +11,7 @@ export const SkillsSection = observer(() : JSX.Element => {
     let skillsIndex = sectionViewModels.findIndex((section) => section.id === "skills");
     
     return (
-        <div className={sectionStyles.section}>
+        <div className={`${sectionStyles.sectionWrapper} ${sectionStyles.sectionFullHeight}`}>
 
             <Section viewModel={sectionViewModels[skillsIndex]} />
 
