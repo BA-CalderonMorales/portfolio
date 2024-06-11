@@ -1,10 +1,19 @@
+/* Custom properties for responsive adjustments */
 .sectionWrapper {
+    --padding-base: 1rem;
+    --padding-sm: 1rem;
+    --padding-lg: 8rem;
+
+    --height-base: 90vh;
+    --height-sm: 50vh;
+    --height-lg: 70vh;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 40rem;
-    padding: 10rem;
+    padding: clamp(var(--padding-sm), 2vw + var(--padding-base), var(--padding-lg));
     margin: 1rem;
     border-radius: 10px;
     background-color: #f5f5f5;
@@ -12,7 +21,11 @@
 }
 
 .sectionFullHeight {
-    height: 90vh;
+    --height-base: 90vh;
+    --height-sm: 90vh;
+    --height-lg: 70vh;
+
+    height: clamp(var(--height-sm), 10vh + var(--height-base), var(--height-lg));
 }
 
 .section {
@@ -30,4 +43,10 @@
 .sectionParagraph {
     display: block;
     text-align: center;
+}
+
+@media (max-width: 576px) {
+    .section {
+        grid-template-rows: 1fr;
+    }
 }
