@@ -7,24 +7,35 @@ import { observer } from "mobx-react";
 import { WorkHistorySection } from "@/app/components/Views/Section/WorkHistorySection";
 import { useContext } from "react";
 import { AppContext } from "@/app/context";
+import { Footer } from "@/app/components/Views/Footer";
 
 const WorkHistory = observer(() : JSX.Element => {
 
-    const { navigationViewModel } = useContext(AppContext);
+    const {
+        footerViewModel,
+        navigationViewModel
+    } = useContext(AppContext);
 
     return (
 
-        <main className={navigationStyles.main}>
+        <>
 
-            <div className={sectionStyles.navigation}>
+            <main className={navigationStyles.main}>
 
-                <Navigation viewModel={navigationViewModel}/>
+                <div className={sectionStyles.navigation}>
 
-            </div>
+                    <Navigation viewModel={navigationViewModel}/>
 
-            <WorkHistorySection />
+                </div>
 
-        </main>
+                <WorkHistorySection />
+
+            </main>
+
+            <Footer data-testid='footer' viewModel={footerViewModel} />
+        
+        </>
+
 
     );
 

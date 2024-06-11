@@ -7,26 +7,37 @@ import { HomeSection } from "@/app/components/Views/Section/HomeSection.tsx";
 import { HomeLifeSection } from "@/app/components/Views/Section/HomeLifeSection.tsx";
 import { AppContext } from "@/app/context";
 import { useContext } from "react";
+import { Footer } from "@/app/components/Views/Footer";
 
 const Home = () => {
 
-    const { navigationViewModel } = useContext(AppContext);
+    const {
+        footerViewModel,
+        navigationViewModel
+    } = useContext(AppContext);
 
     return (
 
-        <main className={navigationStyles.main} data-testid="main-content">
+        <>
 
-            <div className={sectionStyles.navigation}>
+            <main className={navigationStyles.main} data-testid="main-content">
 
-                <Navigation viewModel={navigationViewModel} />
+                <div className={sectionStyles.navigation}>
 
-            </div>
+                    <Navigation viewModel={navigationViewModel} />
 
-            <HomeSection data-testid='home-section' />
+                </div>
 
-            <HomeLifeSection data-testid='home-life-section' />
+                <HomeSection data-testid='home-section' />
 
-        </main>
+                <HomeLifeSection data-testid='home-life-section' />
+
+            </main>
+
+            <Footer data-testid='footer' viewModel={footerViewModel} />
+
+        </>
+
 
     );
 

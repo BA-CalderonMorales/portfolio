@@ -11,7 +11,7 @@ export const WorkHistorySection = observer(() : JSX.Element => {
     let workHistoryIndex = sectionViewModels.findIndex((section) => section.id === "work-history");
     
     return (
-        <div className={`${sectionStyles.sectionWrapper} ${sectionStyles.sectionFullHeight}`}>
+        <div className={`${sectionStyles.sectionWrapper} ${sectionStyles.sectionFullHeight} card`}>
 
             <Section viewModel={sectionViewModels[workHistoryIndex]} />
 

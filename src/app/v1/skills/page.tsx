@@ -7,24 +7,35 @@ import { observer } from "mobx-react";
 import { SkillsSection } from "@/app/components/Views/Section/SkillsSection";
 import { useContext } from "react";
 import { AppContext } from "@/app/context";
+import { Footer } from "@/app/components/Views/Footer";
 
 const Skills = observer(() : JSX.Element => {
 
-    const { navigationViewModel } = useContext(AppContext);
+    const {
+        footerViewModel,
+        navigationViewModel
+    } = useContext(AppContext);
 
     return (
 
-        <main className={navigationStyles.main}>
+        <>
 
-            <div className={sectionStyles.navigation}>
+            <main className={navigationStyles.main}>
 
-                <Navigation viewModel={navigationViewModel} />
+                <div className={sectionStyles.navigation}>
 
-            </div>
+                    <Navigation viewModel={navigationViewModel} />
 
-            <SkillsSection />
+                </div>
 
-        </main>
+                <SkillsSection />
+
+            </main>
+
+            <Footer data-testid='footer' viewModel={footerViewModel} />
+        
+        </>
+
 
     );
 

@@ -9,7 +9,7 @@ export const Navigation = ({ viewModel } : { viewModel : NavigationViewModel | n
 
     return (
 
-        <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top" data-testid="navigation-content">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top card-header" data-testid="navigation-content">
 
             <div className="container-fluid">
 

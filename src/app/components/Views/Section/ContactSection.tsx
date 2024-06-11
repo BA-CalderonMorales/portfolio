@@ -11,7 +11,7 @@ export const ContactSection = observer(() : JSX.Element => {
     let contactIndex = sectionViewModels.findIndex((section) => section.id === "contact");
     
     return (
-        <div className={`${sectionStyles.sectionWrapper} ${sectionStyles.sectionFullHeight}`}>
+        <div className={`${sectionStyles.sectionWrapper} ${sectionStyles.sectionFullHeight} card`}>
 
             <Section viewModel={sectionViewModels[contactIndex]} />
 

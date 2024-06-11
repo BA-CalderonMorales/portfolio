@@ -10,7 +10,7 @@ export const HomeSection = () : JSX.Element => {
     let homeSectionIndex = sectionViewModels.findIndex(section => section.id === "home");
     
     return (
-        <div className={sectionStyles.sectionWrapper}>
+        <div className={`${sectionStyles.sectionWrapper} card`}>
 
             <Section viewModel={sectionViewModels[homeSectionIndex]} />
 

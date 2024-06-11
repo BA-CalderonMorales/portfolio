@@ -7,6 +7,8 @@ import { observer } from "mobx-react";
 import { AboutSection } from "@/app/components/Views/Section/AboutSection";
 import { AppContext } from "@/app/context";
 import { useContext } from "react";
+import { footerViewModel } from "@/app/context/constants/footer";
+import { Footer } from "@/app/components/Views/Footer";
 
 const About = observer(() : JSX.Element => {
 
@@ -14,17 +16,24 @@ const About = observer(() : JSX.Element => {
 
     return (
 
-        <main className={navigationStyles.main}>
+        <>
 
-            <div className={sectionStyles.navigation}>
+            <main className={navigationStyles.main}>
 
-                <Navigation viewModel={navigationViewModel} />
+                <div className={sectionStyles.navigation}>
 
-            </div>
+                    <Navigation viewModel={navigationViewModel} />
 
-            <AboutSection />
+                </div>
 
-        </main>
+                <AboutSection />
+
+            </main>
+
+            <Footer data-testid='footer' viewModel={footerViewModel} />
+        
+        </>
+
 
     );
 
