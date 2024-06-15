@@ -69,7 +69,7 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       # Step 6
       - name: Run Tests
-        run: npx --no-install next test
+        run: npm run test
         working-directory: .
   
   # Job 2
