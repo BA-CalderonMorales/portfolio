@@ -7,7 +7,7 @@ name: Ensure Site is Tested and Built
 on:
   # Runs on pushes targeting the development branch
   push:
-    branches: ["develop"]
+    branches: ["develop", "test-environment-alpha", "main"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
