@@ -22,7 +22,7 @@ export const HomeContent = observer(() : React.JSX.Element => {
 
             <div>
 
-                These days, I've figured out that most of us are just trying to get things to prod...
+                These days, I&apos;ve figured out that most of us are just trying to get things to prod...
 
             </div>
 
