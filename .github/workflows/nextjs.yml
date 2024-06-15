@@ -2,12 +2,12 @@
 #
 # To get started with Next.js see: https://nextjs.org/docs/getting-started
 #
-name: Deploy Next.js site to Pages
+name: GitHub CI for Next.js Repo
 
 on:
   # Runs on pushes targeting the development branch
-  push:
-    branches: ["develop"]
+  pull_request:
+    branches: [develop, test-environment-alpha, main]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -67,8 +67,10 @@ jobs:
       # Step 5
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+      # Step 6
       - name: Run Tests
-        run: ${{ steps.detect-package-manager.outputs.runner }} next build
+        run: npm run test
+        working-directory: .
   
   # Job 2
   job-build:
