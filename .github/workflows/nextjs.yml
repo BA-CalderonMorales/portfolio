@@ -6,8 +6,8 @@ name: Ensure Site is Tested and Built
 
 on:
   # Runs on pushes targeting the development branch
-  push:
-    branches: ["develop", "test-environment-alpha", "main"]
+  pull_request:
+    branches: [develop, test-environment-alpha, main]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -67,8 +67,10 @@ jobs:
       # Step 5
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+      # Step 6
       - name: Run Tests
-        run: ${{ steps.detect-package-manager.outputs.runner }} next test
+        run: npm run test
+        working-directory: .
   
   # Job 2
   job-build:
