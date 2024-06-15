@@ -1,4 +1,5 @@
 @import url('https://fontlibrary.org/face/dejavu-sans-mono');
+@import url('./themes/themes.module.css');
 
 main {
     font-family: 'Dejavu Sans Mono', monospace !important;
