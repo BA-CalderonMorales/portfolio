@@ -2,7 +2,7 @@
 #
 # To get started with Next.js see: https://nextjs.org/docs/getting-started
 #
-name: Ensure Site is Tested and Built
+name: GitHub CI for Next.js Repo
 
 on:
   # Runs on pushes targeting the development branch
