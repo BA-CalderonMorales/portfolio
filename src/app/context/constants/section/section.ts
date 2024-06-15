@@ -1,11 +1,15 @@
-import { SectionViewModel } from '../../components/ViewModels/SectionViewModel';
+import { SectionViewModel } from '@/app/components/ViewModels/SectionViewModel';
+import { homeRecords } from '../content/home.tsx';
 
 export const sectionViewModels = [
     new SectionViewModel({
         id: "home",
-        title: "Home",
-        content: `I am a software engineer/developer based in the United States.
-        I have experience with several programming languages and technologies.`
+        title: "Hello, World!",
+        content: homeRecords,
+        sectionHeaderStyleOverrides: `
+        border-bottom border-secondary
+        text-center text-secondary pb-2
+        mb-5 col-auto display-5 ` 
     }),
     new SectionViewModel({
         id: "about",

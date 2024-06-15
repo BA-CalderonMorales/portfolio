@@ -3,7 +3,7 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { initialState } from "./constants/initialState";
 import { navigationViewModel } from "./constants/navigation";
-import { sectionViewModels } from "./constants/section";
+import { sectionViewModels } from "./constants/section/section";
 import { footerViewModel } from './constants/footer';
 
 export const AppContext = createContext(initialState);
