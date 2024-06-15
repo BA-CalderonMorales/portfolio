@@ -1,18 +1,40 @@
-import styles from "@/app/styles/components/Views/section.module.css";
+import React from "react";
+import styles from "@/app/styles/components/Views/section/section.module.css";
 import { observer } from "mobx-react";
 import { Section as SectionType } from "../../ViewModels/SectionViewModel";
 
-export const Section = observer(({viewModel}: { viewModel: SectionType }): JSX.Element => {
+export const Section = observer(({viewModel}: { viewModel: SectionType }): React.JSX.Element => {
 
     if (!viewModel) return (<section></section>);
+
+    let sectionHeaderStyles = viewModel.sectionHeaderStyleOverrides ?? styles.sectionHeader;
 
     return (
 
         <section id={viewModel.id} className={styles.section}>
 
-            <h2 className={styles.sectionHeader }>{viewModel.title}</h2>
+            {!viewModel.isHero && (
+                <h2 className={sectionHeaderStyles}>{viewModel.title}</h2>
+            )}
 
-            <p className={styles.sectionParagraph}>{viewModel.content}</p>
+            {typeof viewModel.content === 'string' && (
+                <p className={styles.sectionParagraph}>{viewModel.content}</p>
+            )}
+
+            {typeof viewModel.content === 'function' && (
+                viewModel.content()
+            )}
+
+            {typeof viewModel.content === 'object' && (
+                Object.values(viewModel.content).map((Component, index) => {
+
+                    return {
+                        ...Component,
+                        key: index
+                    }
+
+                })
+            )}
 
         </section>
 

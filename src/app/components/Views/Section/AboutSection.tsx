@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import sectionStyles from "@/app/styles/components/Views/section.module.css";
+import sectionStyles from "@/app/styles/components/Views/section/section.module.css";
 import { AppContext } from "@/app/context";
 import { Section } from "./Section";
 

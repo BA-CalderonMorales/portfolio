@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import sectionStyles from "@/app/styles/components/Views/section.module.css";
+import sectionStyles from "@/app/styles/components/Views/section/section.module.css";
 import { Section } from "./Section.tsx";
 import { SectionViewModel } from "@/app/components/ViewModels/SectionViewModel.ts";
 

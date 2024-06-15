@@ -1,7 +1,7 @@
 "use client";
 
 import navigationStyles from "@/app/styles/components/Views/navigation.module.css";
-import sectionStyles from "@/app/styles/components/Views/section.module.css";
+import sectionStyles from "@/app/styles/components/Views/section/section.module.css";
 import { Navigation } from "@/app/components/Views/Navigation.tsx";
 import { HomeSection } from "@/app/components/Views/Section/HomeSection.tsx";
 import { HomeLifeSection } from "@/app/components/Views/Section/HomeLifeSection.tsx";
