@@ -1,42 +1,78 @@
-import React from "react";
-import styles from "@/app/styles/components/Views/section/section.module.css";
+import React, { Fragment } from "react";
 import { observer } from "mobx-react";
 import { Section as SectionType } from "../../ViewModels/SectionViewModel";
 
-export const Section = observer(({viewModel}: { viewModel: SectionType }): React.JSX.Element => {
+interface SectionProps {
 
-    if (!viewModel) return (<section></section>);
+    viewModel?: SectionType
 
-    let sectionHeaderStyles = viewModel.sectionHeaderStyleOverrides ?? styles.sectionHeader;
+}
+
+export const Section = observer((props: SectionProps): React.JSX.Element => {
+
+    if (!props.viewModel) return (<section></section>);
+
+    let sectionWrapperStyles = props.viewModel?.sectionWrapperStyleOverrides ?? "sectionWrapper card";
+    
+    let sectionHeaderStyles = props.viewModel?.sectionHeaderStyleOverrides ?? "sectionHeader";
 
     return (
 
-        <section id={viewModel.id} className={styles.section}>
+        <Fragment>
 
-            {!viewModel.isHero && (
-                <h2 className={sectionHeaderStyles}>{viewModel.title}</h2>
-            )}
+            {typeof props.viewModel.content === 'object' ? (
 
-            {typeof viewModel.content === 'string' && (
-                <p className={styles.sectionParagraph}>{viewModel.content}</p>
-            )}
+                Object.values(props.viewModel.content).map((Component: React.JSX.Element, index) => {
 
-            {typeof viewModel.content === 'function' && (
-                viewModel.content()
-            )}
+                    return (
+                        <div key={index} className={sectionWrapperStyles}>
 
-            {typeof viewModel.content === 'object' && (
-                Object.values(viewModel.content).map((Component, index) => {
+                            {index === 0 ? (
 
-                    return {
-                        ...Component,
-                        key: index
-                    }
+                                <section key={index} id={props.viewModel?.id}>
+
+                                    {!props.viewModel?.isHero && (
+                                        <h2 className={sectionHeaderStyles}>{props.viewModel?.title}</h2>
+                                    )}
+                                
+                                    {Component}
+
+                                </section>
+
+                            ) : (
+
+                                <section key={index} id={props.viewModel?.id} className={sectionWrapperStyles}>
+                                
+                                    {Component}
+
+                                </section>
+
+                            )}
+
+                        </div>
+                    );
 
                 })
-            )}
 
-        </section>
+
+            ) : (
+
+                <section id={props.viewModel.id} className={sectionWrapperStyles}>
+
+                    {!props.viewModel.isHero && (
+                        <h2 className={sectionHeaderStyles}>{props.viewModel.title}</h2>
+                    )}
+
+                    {typeof props.viewModel.content === 'string' && (
+                        <p className="sectionParagraph">{props.viewModel.content}</p>
+                    )}
+
+                </section>
+
+            )} 
+
+        </Fragment>
+
 
     );
 

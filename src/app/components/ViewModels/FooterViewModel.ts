@@ -10,7 +10,7 @@ export class FooterViewModel {
 
     static FOOTER_LOGO = "My Portfolio"
 
-    public footerText = ' Brandon A. Calderon-Morales. All rights reserved.';
+    public footerText = 'Brandon A. Calderon-Morales. All rights reserved. ';
 
     constructor() {
 
