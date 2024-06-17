@@ -3,7 +3,8 @@ import {makeObservable, observable} from "mobx";
 export interface NavLink {
     id: string,
     url: string,
-    text: string
+    text: string,
+    options?: NavLink[]
 }
 
 export interface Navigation {
@@ -22,10 +23,11 @@ export class NavigationViewModel {
 
         makeObservable(this, {
 
+            // observables
             links: observable
 
         });
 
-    }
+    } 
 
 }

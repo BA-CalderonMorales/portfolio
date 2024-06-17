@@ -24,7 +24,7 @@ const WorkHistory = observer(() : JSX.Element => {
 
                 <div className="navigation">
 
-                    <Navigation viewModel={navigationViewModel}/>
+                    <Navigation appViewModel={appViewModel} viewModel={navigationViewModel}/>
 
                 </div>
 

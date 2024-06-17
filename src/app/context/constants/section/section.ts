@@ -1,5 +1,7 @@
 import { SectionViewModel } from '@/app/components/ViewModels/SectionViewModel';
 import { homeRecords } from '../content/home.tsx';
+import { aboutRecords } from '../content/about.tsx';
+import { contactRecords } from '../content/contact.tsx';
 
 export const sectionViewModels = [
     new SectionViewModel({
@@ -8,28 +10,46 @@ export const sectionViewModels = [
         content: homeRecords,
         sectionHeaderStyleOverrides: `
         border-bottom border-secondary
-        text-center text-secondary pb-2
-        mb-5 col-auto display-5 ` 
+        text-center pb-2
+        col-auto display-5 sectionCustomHeader` 
     }),
     new SectionViewModel({
         id: "about",
-        title: "About",
-        content: `I don't like to talk about myself as I preceive that to be a bit narcissistic.
-        I merely want to share my experiences and knowledge with others.`
+        content: aboutRecords,
+        title: "About (via FAQ)",
+        sectionHeaderStyleOverrides: `
+        border-bottom border-secondary
+        text-center pb-2
+        col-auto display-5 sectionCustomHeader` 
     }),
     new SectionViewModel({
         id: "work-history",
         title: "Work History",
-        content: `I have worked for several companies and have gained a lot of experience.`
+        content: `I have worked for several companies and have gained a lot of experience.`,
+        sectionWrapperStyleOverrides: `sectionWrapper sectionFullHeight card`,
+        sectionHeaderStyleOverrides: `
+        border-bottom border-secondary
+        text-center pb-2
+        col-auto display-5 sectionCustomHeader` 
     }),
     new SectionViewModel({
         id: "skills",
         title: "Skills",
-        content: `C#, Java, JavaScript, TypeScript, SQL, HTML/CSS, MVVM, MVC, Git/GitHub, CI/CD, Agile, Scrum`
+        content: `C#, Java, JavaScript, TypeScript, SQL, HTML/CSS, MVVM, MVC, Git/GitHub, CI/CD, Agile, Scrum`,
+        sectionWrapperStyleOverrides: `sectionWrapper sectionFullHeight card`,
+        sectionHeaderStyleOverrides: `
+        border-bottom border-secondary
+        text-center pb-2
+        col-auto display-5 sectionCustomHeader` 
     }),
     new SectionViewModel({
         id: "contact",
         title: "Contact",
-        content: "You can contact me at via: email, phone, or social media."
+        content: contactRecords,
+        sectionWrapperStyleOverrides: `sectionWrapper sectionFullHeight card`,
+        sectionHeaderStyleOverrides: `
+        border-bottom border-secondary
+        text-center pb-2
+        col-auto display-5 sectionCustomHeader` 
     })
 ];

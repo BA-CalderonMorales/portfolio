@@ -22,17 +22,17 @@ const Home = () => {
 
             <Main viewModel={appViewModel} >
 
-                <div className="navigation">
+                <div key={'navigation-home'} className="navigation">
 
-                    <Navigation viewModel={navigationViewModel} />
+                    <Navigation appViewModel={appViewModel} viewModel={navigationViewModel} />
 
                 </div>
 
                 <div className="allSections">
 
-                    <HomeSection data-testid='home-section' />
+                    <HomeSection key={'home-section'} data-testid='home-section' />
 
-                    <HomeLifeSection data-testid='home-life-section' />
+                    <HomeLifeSection key={'home-life-section'} data-testid='home-life-section' />
 
                 </div>
 

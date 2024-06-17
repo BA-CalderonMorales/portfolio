@@ -28,3 +28,34 @@
     color: var(--bs-bravo) !important;
 
 }
+
+.navbar-sub-menu {
+
+    background-color: var(--bs-bravo) !important;
+
+    .dropdown-item a {
+
+        color: var(--bs-charlie) !important;
+        text-decoration: none !important; 
+
+    }
+
+    .dropdown-item:active {
+
+        background-color: var(--bs-charlie) !important;
+
+        a {
+
+            color: var(--bs-bravo) !important;
+
+        }
+
+    }
+
+    .dropdown-item:visited {
+
+        background-color: var(--bs-foxtrot) !important;
+
+    }
+
+}

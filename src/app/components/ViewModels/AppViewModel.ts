@@ -3,7 +3,7 @@ import { action, makeObservable, observable } from "mobx";
 export class AppViewModel {
 
     loading: boolean = true;
-    themes: string[] = ['default', 'earthly'];
+    themes: string[] = ['default', 'modern', 'dracula', 'earthly'];
     theme?: string = 'default';
 
     constructor() {
@@ -18,6 +18,7 @@ export class AppViewModel {
             // actions
             checkLocalStorage: action,
             initialize: action,
+            onNavigationBarThemeSwitch: action,
             setTheme: action
 
         });
@@ -43,6 +44,16 @@ export class AppViewModel {
         this.checkLocalStorage();
 
         this.loading = false;
+    };
+
+    onNavigationBarThemeSwitch = (event: React.MouseEvent<HTMLElement>) => {
+
+        event.preventDefault();
+
+        if (!event.currentTarget || !event.currentTarget.id) return;
+
+        this.setTheme(event.currentTarget.id || 'default');
+
     };
 
     setTheme = (theme: string) => {

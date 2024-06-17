@@ -9,11 +9,5 @@ export const ContactSection = observer(() : JSX.Element => {
 
     let contactIndex = sectionViewModels.findIndex((section) => section.id === "contact");
     
-    return (
-        <div className={`sectionWrapper sectionFullHeight card`}>
-
-            <Section viewModel={sectionViewModels[contactIndex]} />
-
-        </div>
-    );
+    return <Section viewModel={sectionViewModels[contactIndex]} />;
 });

@@ -12,9 +12,8 @@ export const Footer = observer(({ viewModel }: { viewModel: FooterViewModel | nu
     return (
 
         <footer className={`theme-${appViewModel?.theme} footer card-footer`}>
-            <span className="text-muted">
-                {FooterViewModel.FOOTER_LOGO} &copy; {viewModel?.footerText}
-            </span>
+            <span>{FooterViewModel.FOOTER_LOGO}</span>
+            <span className="align-right">&copy;&nbsp;{viewModel?.footerText}</span>
         </footer>
 
     );

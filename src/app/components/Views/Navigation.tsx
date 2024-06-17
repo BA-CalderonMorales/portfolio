@@ -1,9 +1,18 @@
 import Link from "next/link";
 import { NavigationViewModel, NavLink } from "@/app/components/ViewModels/NavigationViewModel.ts";
+import { AppViewModel } from "../ViewModels/AppViewModel";
+import { Fragment } from "react";
 
-export const Navigation = ({ viewModel } : { viewModel : NavigationViewModel | null | undefined }) : JSX.Element => {
+interface NavigationProps {
 
-    if (!viewModel || !viewModel.links || viewModel.links.length === 0) return (
+    viewModel: NavigationViewModel | null | undefined;
+    appViewModel: AppViewModel | null | undefined;
+
+}
+
+export const Navigation = (props: NavigationProps) : JSX.Element => {
+
+    if (!props.viewModel || !props.viewModel.links || props.viewModel.links.length === 0) return (
         <nav data-testid="navigation-content"></nav>
     );
 
@@ -17,10 +26,18 @@ export const Navigation = ({ viewModel } : { viewModel : NavigationViewModel | n
             <div className="container-fluid">
 
                 <a className="navbar-brand" href="/">
-                    {viewModel.brand}
+                    {props.viewModel.brand}
                 </a>
 
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button
+                    className="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
 
                     <span className="navbar-toggler-icon"></span>
                 
@@ -30,15 +47,62 @@ export const Navigation = ({ viewModel } : { viewModel : NavigationViewModel | n
 
                     <ul className="navbar-nav">
 
-                        {viewModel.links.map(( link: NavLink ) => (
+                        {props.viewModel.links.map(( link: NavLink ) => (
 
-                            <li key={link.id} className="nav-item">
+                            <Fragment key={link.id}>
 
-                                <Link className="nav-link" href={link.url}>
-                                    {link.text}
-                                </Link>
+                                {!link.options ? (
 
-                            </li>
+                                    <li id={link.id} key={link.id} className="nav-item">
+
+                                        <Link className="nav-link" href={link.url}>
+                                            {link.text}
+                                        </Link>
+
+                                    </li>
+
+                                ) : (
+
+                                    <li id={link.id} key={link.id} className="nav-item dropdown">
+
+                                        <Link
+                                            className="nav-link dropdown-toggle"
+                                            href="#"
+                                            data-bs-toggle="dropdown"
+                                            data-bs-auto-close="outside"
+                                        >
+
+                                            {link.text}
+
+                                        </Link>
+
+                                        <ul className="dropdown-menu shadow navbar-sub-menu">
+                                            
+                                                {link.options.map(( option: NavLink ) => (
+
+                                                    <li
+                                                        key={option.id}
+                                                        id={option.id}
+                                                        className="dropdown-item"
+                                                        onClick={props.appViewModel?.onNavigationBarThemeSwitch}
+                                                    >
+
+                                                        <Link key={option.id} href={link.url}>
+                                                            {option.text}
+                                                        </Link>
+
+                                                    </li>
+
+                                                ))} 
+
+                                        </ul>
+
+                                    </li>
+
+                                )}
+
+                            </Fragment>
+                            
                         ))}
 
                     </ul>

@@ -26,6 +26,26 @@ $themes: (
         echo: $earthly-blue,
         foxtrot: $earthly-grey
     ),
+    modern: (
+        primary: $yellow,
+        secondary: $purple,
+        alpha: $yellow,
+        bravo: $purple,
+        charlie: $black,
+        delta: $green,
+        echo: $blue,
+        foxtrot: $white
+    ),
+    dracula: (
+        primary: $black,
+        secondary: $white,
+        alpha: $black,
+        bravo: $white,
+        charlie: $black,
+        delta: $black,
+        echo: $black,
+        foxtrot: $white
+    )
 );
 
 @each $theme, $colors in $themes {
@@ -60,5 +80,7 @@ body {
 @import '../bootstrap-5.0.2/scss/bootstrap.scss';
 @import './components/navigation.scss';
 @import './components/section.scss';
-@import './components/content.scss';
+@import './components/content/content.scss';
+@import './components/content/about.scss';
+@import './components/content/contact.scss';
 @import './components/footer.scss';

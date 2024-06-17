@@ -9,11 +9,5 @@ export const WorkHistorySection = observer(() : JSX.Element => {
 
     let workHistoryIndex = sectionViewModels.findIndex((section) => section.id === "work-history");
     
-    return (
-        <div className={`sectionWrapper sectionFullHeight card`}>
-
-            <Section viewModel={sectionViewModels[workHistoryIndex]} />
-
-        </div>
-    );
+    return <Section viewModel={sectionViewModels[workHistoryIndex]} />;
 });

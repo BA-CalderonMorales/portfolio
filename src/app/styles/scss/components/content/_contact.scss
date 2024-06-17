@@ -1,0 +1,31 @@
+.contact-info {
+
+    display: grid;
+    row-gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    a {
+
+        color: var(--bs-foxtrot) !important;
+
+    }
+
+    ul {
+
+        list-style-type: none;
+        padding: 0;
+
+        li {
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: .75rem;
+
+        }
+
+    }
+
+}

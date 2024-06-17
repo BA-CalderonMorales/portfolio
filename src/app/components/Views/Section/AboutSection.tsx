@@ -8,11 +8,5 @@ export const AboutSection = () : JSX.Element => {
 
     let aboutSectionIndex = sectionViewModels.findIndex(model => model.id === "about");
     
-    return (
-        <div className={`sectionWrapper sectionFullHeight card`}>
-
-            <Section viewModel={sectionViewModels[aboutSectionIndex]} />
-
-        </div>
-    );
+    return <Section viewModel={sectionViewModels[aboutSectionIndex]} />;
 };

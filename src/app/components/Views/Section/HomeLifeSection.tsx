@@ -18,12 +18,5 @@ export const HomeLifeSection = () : JSX.Element => {
 
     }, []);
 
-    
-    return (
-        <div className={`sectionWrapper sectionOneRem card`}>
-
-            <Section viewModel={homeLifeSection} />
-
-        </div>
-    );
+    return <Section viewModel={homeLifeSection} />;
 };
