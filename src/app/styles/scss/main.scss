@@ -1,5 +1,5 @@
 @import 'https://fontlibrary.org/face/dejavu-sans-mono';
-@import '../bootstrap-5.0.2/scss/bootstrap.scss';
+@import 'bootstrap/scss/bootstrap.scss';
 
 /* Earthly Theme Color Scheme */
 $earthly-brown: #57473A;
@@ -77,7 +77,7 @@ body {
 }
 
 /** Must be imported after adjustments to Bootstrap variables */
-@import '../bootstrap-5.0.2/scss/bootstrap.scss';
+@import 'bootstrap/scss/bootstrap.scss';
 @import './components/navigation.scss';
 @import './components/section.scss';
 @import './components/content/content.scss';
