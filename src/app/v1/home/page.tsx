@@ -1,7 +1,6 @@
 "use client";
 
-import navigationStyles from "@/app/styles/components/Views/navigation.module.css";
-import sectionStyles from "@/app/styles/components/Views/section/section.module.css";
+import { Main } from "@/app/components/Views/Main.tsx";
 import { Navigation } from "@/app/components/Views/Navigation.tsx";
 import { HomeSection } from "@/app/components/Views/Section/HomeSection.tsx";
 import { HomeLifeSection } from "@/app/components/Views/Section/HomeLifeSection.tsx";
@@ -12,6 +11,7 @@ import { Footer } from "@/app/components/Views/Footer";
 const Home = () => {
 
     const {
+        appViewModel,
         footerViewModel,
         navigationViewModel
     } = useContext(AppContext);
@@ -20,19 +20,23 @@ const Home = () => {
 
         <>
 
-            <main className={navigationStyles.main} data-testid="main-content">
+            <Main viewModel={appViewModel} >
 
-                <div className={sectionStyles.navigation}>
+                <div className="navigation">
 
                     <Navigation viewModel={navigationViewModel} />
 
                 </div>
 
-                <HomeSection data-testid='home-section' />
+                <div className="allSections">
 
-                <HomeLifeSection data-testid='home-life-section' />
+                    <HomeSection data-testid='home-section' />
 
-            </main>
+                    <HomeLifeSection data-testid='home-life-section' />
+
+                </div>
+
+            </Main>
 
             <Footer data-testid='footer' viewModel={footerViewModel} />
 

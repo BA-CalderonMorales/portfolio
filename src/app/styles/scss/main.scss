@@ -1,0 +1,64 @@
+@import 'https://fontlibrary.org/face/dejavu-sans-mono';
+@import '../bootstrap-5.0.2/scss/bootstrap.scss';
+
+/* Earthly Theme Color Scheme */
+$earthly-brown: #57473A;
+$earthly-green: #6E8658;
+$earthly-blue: #73A1B2;
+$earthly-grey: #D0D5CE;
+$earthly-white: #EFE9E1;
+$earthly-red: #A23C2C;
+
+$themes: (
+    default: (
+        primary: $primary,
+        secondary: $secondary,
+        alpha: $primary,
+        bravo: $secondary,
+    ),
+    earthly: (
+        primary: $earthly-red,
+        secondary: $earthly-white,
+        alpha: $earthly-red,
+        bravo: $earthly-white,
+        charlie: $earthly-brown,
+        delta: $earthly-green,
+        echo: $earthly-blue,
+        foxtrot: $earthly-grey
+    ),
+);
+
+@each $theme, $colors in $themes {
+
+    .theme-#{$theme} {
+
+        @each $color, $value in $colors {
+
+            --bs-#{$color}: #{$value};
+
+        }
+
+    }
+
+}
+
+main {
+    font-family: 'Dejavu Sans Mono', monospace !important;
+    font-variant-numeric: tabular-nums lining-nums !important;
+    font-kerning: none !important;
+    background-color: var(--bs-delta) !important;
+}
+
+body {
+    font-family: 'Dejavu Sans Mono', monospace !important;
+    font-variant-numeric: tabular-nums lining-nums !important;
+    font-kerning: none !important;
+    background-color: var(--bs-delta) !important;
+}
+
+/** Must be imported after adjustments to Bootstrap variables */
+@import '../bootstrap-5.0.2/scss/bootstrap.scss';
+@import './components/navigation.scss';
+@import './components/section.scss';
+@import './components/content.scss';
+@import './components/footer.scss';

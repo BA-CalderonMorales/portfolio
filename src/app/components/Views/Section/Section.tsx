@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "@/app/styles/components/Views/section/section.module.css";
 import { observer } from "mobx-react";
 import { Section as SectionType } from "../../ViewModels/SectionViewModel";
 
@@ -7,18 +6,18 @@ export const Section = observer(({viewModel}: { viewModel: SectionType }): React
 
     if (!viewModel) return (<section></section>);
 
-    let sectionHeaderStyles = viewModel.sectionHeaderStyleOverrides ?? styles.sectionHeader;
+    let sectionHeaderStyles = viewModel.sectionHeaderStyleOverrides ?? "sectionHeader";
 
     return (
 
-        <section id={viewModel.id} className={styles.section}>
+        <section id={viewModel.id} className="section">
 
             {!viewModel.isHero && (
                 <h2 className={sectionHeaderStyles}>{viewModel.title}</h2>
             )}
 
             {typeof viewModel.content === 'string' && (
-                <p className={styles.sectionParagraph}>{viewModel.content}</p>
+                <p className="sectionParagraph">{viewModel.content}</p>
             )}
 
             {typeof viewModel.content === 'function' && (

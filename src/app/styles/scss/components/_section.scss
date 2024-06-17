@@ -1,0 +1,62 @@
+.allSections {
+
+    height: 100%;
+    padding: 5rem 0 2rem 0;
+
+}
+
+.sectionWrapper {
+    --padding-base: 1rem;
+    --padding-sm: 1rem;
+    --padding-lg: 8rem;
+
+    --height-base: 90vh;
+    --height-sm: 50vh;
+    --height-lg: 70vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 40rem;
+    padding: clamp(var(--padding-sm), 2vw + var(--padding-base), var(--padding-lg));
+    margin: 1rem 1rem 1rem 1rem;
+    border-radius: 10px;
+    background-color: var(--color-bravo);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sectionFullHeight {
+    --height-base: 90vh;
+    --height-sm: 91.5vh;
+    --height-lg: 70vh;
+
+    height: clamp(var(--height-sm), 10vh + var(--height-base), var(--height-lg));
+}
+
+.sectionOneRem {
+    margin: 1rem;
+}
+
+.section {
+    display: grid;
+    grid-template-rows: repeat(2, 2fr);
+    justify-content: center;
+    align-items: center;
+}
+
+.sectionHeader {
+    display: flex;
+    justify-content: center;
+}
+
+.sectionParagraph {
+    display: block;
+    text-align: center;
+}
+
+@media (max-width: 576px) {
+    .section {
+        grid-template-rows: 1fr;
+    }
+}

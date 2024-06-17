@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import sectionStyles from "@/app/styles/components/Views/section/section.module.css";
 import { Section } from "./Section.tsx";
 import { SectionViewModel } from "@/app/components/ViewModels/SectionViewModel.ts";
 
@@ -21,7 +20,7 @@ export const HomeLifeSection = () : JSX.Element => {
 
     
     return (
-        <div className={`${sectionStyles.sectionWrapper} ${sectionStyles.sectionOneRem} card`}>
+        <div className={`sectionWrapper sectionOneRem card`}>
 
             <Section viewModel={homeLifeSection} />
 
