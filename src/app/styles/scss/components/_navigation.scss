@@ -1,0 +1,61 @@
+.navbar {
+
+    background-color: var(--bs-alpha) !important;
+
+}
+
+.navbar-brand {
+
+    color: var(--bs-bravo) !important;
+
+}
+
+.navbar-toggler {
+
+    background-color: var(--bs-bravo) !important;
+    color: var(--bs-bravo) !important;
+
+}
+
+.navbar-toggler-icon {
+
+    color: var(--bs-bravo) !important;
+
+}
+
+.navbar-nav .nav-item .nav-link {
+
+    color: var(--bs-bravo) !important;
+
+}
+
+.navbar-sub-menu {
+
+    background-color: var(--bs-bravo) !important;
+
+    .dropdown-item a {
+
+        color: var(--bs-charlie) !important;
+        text-decoration: none !important; 
+
+    }
+
+    .dropdown-item:active {
+
+        background-color: var(--bs-charlie) !important;
+
+        a {
+
+            color: var(--bs-bravo) !important;
+
+        }
+
+    }
+
+    .dropdown-item:visited {
+
+        background-color: var(--bs-foxtrot) !important;
+
+    }
+
+}

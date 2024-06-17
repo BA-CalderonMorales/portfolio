@@ -1,0 +1,61 @@
+.allSections {
+
+    height: 100%;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    margin: 2rem;
+
+}
+
+.sectionWrapper {
+    --padding-base: 1rem;
+    --padding-sm: 1rem;
+    --padding-lg: 8rem;
+
+    --height-base: 90vh;
+    --height-sm: 50vh;
+    --height-lg: 70vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 40rem;
+    padding: clamp(var(--padding-sm), 2vw + var(--padding-base), var(--padding-lg));
+    margin: 1rem 1rem 1rem 1rem;
+    border: none !important;
+    background-color: var(--bs-alpha) !important;
+    color: var(--bs-foxtrot) !important;
+    width: 90vw;
+
+}
+
+.sectionFullHeight {
+
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.sectionHeader {
+    display: flex;
+    justify-content: center;
+    text-decoration: underline;
+
+    color: var(--bs-bravo) !important;
+}
+
+.sectionCustomHeader {
+
+    color: var(--bs-bravo) !important;
+
+}
+
+.sectionParagraph {
+    display: block;
+    text-align: center;
+}
