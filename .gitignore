@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 .yarn/install-state.gz
+/src/app/styles/bootstrap-5.0.2*
 
 # testing
 /coverage
