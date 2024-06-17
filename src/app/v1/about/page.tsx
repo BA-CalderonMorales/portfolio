@@ -1,34 +1,40 @@
 "use client";
 
-import navigationStyles from "@/app/styles/components/Views/navigation.module.css";
-import sectionStyles from "@/app/styles/components/Views/section/section.module.css";
+import { Main } from "@/app/components/Views/Main";
 import { Navigation } from "@/app/components/Views/Navigation";
 import { observer } from "mobx-react";
 import { AboutSection } from "@/app/components/Views/Section/AboutSection";
 import { AppContext } from "@/app/context";
 import { useContext } from "react";
-import { footerViewModel } from "@/app/context/constants/footer";
 import { Footer } from "@/app/components/Views/Footer";
 
 const About = observer(() : JSX.Element => {
 
-    const { navigationViewModel } = useContext(AppContext);
+    const {
+        appViewModel,
+        footerViewModel,
+        navigationViewModel
+    } = useContext(AppContext);
 
     return (
 
         <>
 
-            <main className={navigationStyles.main}>
+            <Main viewModel={appViewModel}>
 
-                <div className={sectionStyles.navigation}>
+                <div className="navigation">
 
-                    <Navigation viewModel={navigationViewModel} />
+                    <Navigation appViewModel={appViewModel} viewModel={navigationViewModel} />
 
                 </div>
 
-                <AboutSection />
+                <div className="allSections">
 
-            </main>
+                    <AboutSection />
+
+                </div>
+
+            </Main>
 
             <Footer data-testid='footer' viewModel={footerViewModel} />
         

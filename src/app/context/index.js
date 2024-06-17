@@ -2,6 +2,7 @@
 
 import React, { createContext, useEffect, useState } from 'react';
 import { initialState } from "./constants/initialState";
+import { appViewModel } from './constants/app';
 import { navigationViewModel } from "./constants/navigation";
 import { sectionViewModels } from "./constants/section/section";
 import { footerViewModel } from './constants/footer';
@@ -17,6 +18,7 @@ const AppProvider = ({children}) => {
         // set the global context state here...
         setGlobalState((prevGlobalState) => ({
             ...prevGlobalState,
+            appViewModel: appViewModel,
             navigationViewModel: navigationViewModel,
             sectionViewModels: sectionViewModels,
             footerViewModel: footerViewModel

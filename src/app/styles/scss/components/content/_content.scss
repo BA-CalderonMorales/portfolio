@@ -1,0 +1,14 @@
+.content {
+    display: grid;
+    row-gap: 5rem;
+    padding: 0 2rem;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    div {
+
+        color: var(--bs-bravo) !important;
+
+    }
+}

@@ -6,7 +6,8 @@ export interface Section {
     title?: string,
     content: string | Function | Record<string, React.JSX.Element>,
     isHero?: boolean,
-    sectionHeaderStyleOverrides?: string
+    sectionHeaderStyleOverrides?: string,
+    sectionWrapperStyleOverrides?: string
 }
 
 export class SectionViewModel {
@@ -16,6 +17,7 @@ export class SectionViewModel {
     public content: string | Function | Record<string, React.JSX.Element>;
     public isHero?: boolean = false;
     sectionHeaderStyleOverrides?: string;
+    sectionWrapperStyleOverrides?: string
 
     constructor(section: Section) {
         this.id = section.id;
@@ -23,6 +25,7 @@ export class SectionViewModel {
         this.content = section.content;
         this.isHero = section.isHero;
         this.sectionHeaderStyleOverrides = section.sectionHeaderStyleOverrides;
+        this.sectionWrapperStyleOverrides = section.sectionWrapperStyleOverrides;
 
         makeObservable(this, {
 
