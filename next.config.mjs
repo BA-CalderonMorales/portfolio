@@ -1,39 +1,40 @@
-/** @type {import('next').NextConfig} */
 const nextConfig = {
-    async redirects() {
+
+    redirects: async () => {
         return [
             {
                 source: '/',
-                destination: '/v1/home',
-                permanent: true
+                destination: '/routes/v1/home',
+                permanent: true,
             },
             {
                 source: '/home',
-                destination: '/v1/home',
-                permanent: true
+                destination: '/routes/v1/home',
+                permanent: true,
             },
             {
                 source: '/about',
-                destination: '/v1/about',
-                permanent: true
-            },
-            {
-                source: '/work-history',
-                destination: '/v1/work-history',
-                permanent: true
-            },
-            {
-                source: '/skills',
-                destination: '/v1/skills',
-                permanent: true
+                destination: '/routes/v1/about',
+                permanent: true,
             },
             {
                 source: '/contact',
-                destination: '/v1/contact',
-                permanent: true
+                destination: '/routes/v1/contact',
+                permanent: true,
+            },
+            {
+                source: '/work-history',
+                destination: '/routes/v1/work-history',
+                permanent: true,
+            },
+            {
+                source: '/skills',
+                destination: '/routes/v1/skills',
+                permanent: true,
             }
-        ]
+        ];
     }
+
 };
 
 export default nextConfig;
