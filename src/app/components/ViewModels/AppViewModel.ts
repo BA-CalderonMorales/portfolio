@@ -19,6 +19,7 @@ export class AppViewModel {
 
             // actions
             checkLocalStorage: action,
+            getAnimationColor: action,
             initialize: action,
             onNavigationBarThemeSwitch: action,
             setCurrentPath: action,
@@ -39,6 +40,22 @@ export class AppViewModel {
         this.setTheme(theme || 'earthly');
 
     }
+
+    getAnimationColor = () => {
+
+        if (this.theme === 'dracula') {
+            return "#f8f8f2"; // $dracula-white
+        }
+
+        if (this.theme === 'modern') {
+            return '#6f42c1'; // $modern-purple
+        }
+
+        if (this.theme === 'earthly') {
+            return '#A23C2C'; // $earthly-red
+        }
+
+    };
 
     initialize = () => {
 

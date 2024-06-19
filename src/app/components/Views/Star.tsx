@@ -2,8 +2,6 @@ import { useRef, useLayoutEffect, useContext } from "react";
 import { degreesToRadians, mix } from "popmotion";
 import { AppContext } from "@/app/context";
 
-let color = "#111111";
-
 export const Star = ({ p }: { p: number }) => {
     const ref = useRef<THREE.Object3D>(null);
     const {appViewModel} = useContext(AppContext);
@@ -19,17 +17,7 @@ export const Star = ({ p }: { p: number }) => {
         ref.current!.position.setFromSphericalCoords(distance, yAngle, xAngle);
     });
 
-    if (appViewModel.theme === 'dracula') {
-        color = "#f8f8f2"; // $dracula-white
-    }
-
-    if (appViewModel.theme === 'modern') {
-        color = '#6f42c1'; // $modern-purple
-    }
-
-    if (appViewModel.theme === 'earthly') {
-        color = '#A23C2C'; // $earthly-red
-    }
+    let color = appViewModel.getAnimationColor();
 
     return (
         <mesh ref={ref}>

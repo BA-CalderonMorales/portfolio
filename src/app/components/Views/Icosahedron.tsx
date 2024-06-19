@@ -1,10 +1,18 @@
-import React from "react";
+import { AppContext } from "@/app/context";
+import React, { useContext } from "react";
 
-const color = "#111111";
+export const Icosahedron = () => {
+    const {appViewModel} = useContext(AppContext);
 
-export const Icosahedron = () => (
-    <mesh rotation-x={0.35}>
-        <icosahedronGeometry args={[1, 0]} />
-        <meshBasicMaterial wireframe color={color} />
-    </mesh>
-);
+    const color = appViewModel.getAnimationColor();
+
+    return (
+
+        <mesh rotation-x={0.35}>
+            <icosahedronGeometry args={[1, 0]} />
+            <meshBasicMaterial wireframe color={color} />
+        </mesh>
+
+    );
+
+};
