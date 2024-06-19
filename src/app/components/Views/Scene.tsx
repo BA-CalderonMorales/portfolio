@@ -5,7 +5,7 @@ import { degreesToRadians, progress } from "popmotion";
 import { Star } from "./Star";
 import { Icosahedron } from "./Icosahedron";
 
-export default function Scene({ numStars = 100 }) {
+export default function Scene({ numStars = 250 }) {
 
     const gl = useThree((state) => state.gl);
 
@@ -35,7 +35,7 @@ export default function Scene({ numStars = 100 }) {
 
     });
 
-    useLayoutEffect(() => gl.setPixelRatio(0.3));
+    useLayoutEffect(() => gl.setPixelRatio(0.75), [gl]);
 
     const stars = [];
 

@@ -8,14 +8,19 @@ export const Star = ({ p }: { p: number }) => {
     const {appViewModel} = useContext(AppContext);
 
     useLayoutEffect(() => {
-        const distance = mix(2, 3.5, Math.random());
+
+        const distance = mix(1.75, 10, Math.random());
+
         const yAngle = mix(
             degreesToRadians(80),
             degreesToRadians(100),
             Math.random()
         );
+
         const xAngle = degreesToRadians(360) * p;
+
         ref.current!.position.setFromSphericalCoords(distance, yAngle, xAngle);
+
     });
 
     let color = appViewModel.getAnimationColor();

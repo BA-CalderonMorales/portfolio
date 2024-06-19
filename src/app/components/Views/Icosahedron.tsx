@@ -8,8 +8,8 @@ export const Icosahedron = () => {
 
     return (
 
-        <mesh rotation-x={0.35}>
-            <icosahedronGeometry args={[1, 0]} />
+        <mesh rotation-x={0.15}>
+            <icosahedronGeometry args={[1, 1]} />
             <meshBasicMaterial wireframe color={color} />
         </mesh>
 
