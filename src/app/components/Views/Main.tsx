@@ -22,6 +22,7 @@ export const Main = observer((props : MainProps) => {
 
         setPath(path[3] || ''); // home, about, work-history, skills, contact
 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
@@ -32,6 +33,7 @@ export const Main = observer((props : MainProps) => {
 
         }
 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [path]); // listens to path changes...
 
     return (

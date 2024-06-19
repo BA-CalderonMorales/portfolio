@@ -1,9 +1,10 @@
 import { useRef, useLayoutEffect, useContext } from "react";
 import { degreesToRadians, mix } from "popmotion";
 import { AppContext } from "@/app/context";
+import THREE from "three";
 
 export const Star = ({ p }: { p: number }) => {
-    const ref = useRef<THREE.Object3D>(null);
+    const ref = useRef<THREE.Mesh>(null);
     const {appViewModel} = useContext(AppContext);
 
     useLayoutEffect(() => {
@@ -24,7 +25,8 @@ export const Star = ({ p }: { p: number }) => {
             <boxGeometry args={[0.05, 0.05, 0.05]} />
             <meshBasicMaterial
                 color={color}
-                wireframe
+                wireframe={true}
+                wireframeLinewidth={1.5}
             />
         </mesh>
     );
