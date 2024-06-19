@@ -67,19 +67,14 @@ $themes: (
 }
 
 ::-webkit-scrollbar {
-    height: 12px;
-    width: 5px;
-    background: #000000 !important;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #ffffff !important;
-    -webkit-border-radius: 1ex;
+    -webkit-border-radius: 4px;
 }
 
 ::-webkit-scrollbar-track,
 ::-webkit-scrollbar-corner {
-    background: #ffffff !important;
 }
 
 main {
