@@ -1,0 +1,51 @@
+::-webkit-scrollbar {
+  height: 12px;
+  width: 5px;
+  background: var(--bs-bravo);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bs-alpha);
+  -webkit-border-radius: 1ex;
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--bs-alpha);
+}
+
+.container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+canvas {
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: pixelated;
+  image-rendering: optimize-contrast;
+}
+
+.threejs-animation {
+    position: absolute !important;
+    height: 150vh !important;
+    overflow: hidden !important;
+    -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent);
+    mask-image: linear-gradient(to bottom, black 75%, transparent);
+}
+
+/* Mobile styles */
+@media only screen and (max-width: 600px) {
+  .threejs-animation {
+    height: 175vh !important; /* Adjust the height for mobile screens */
+    overflow: visible !important; /* Let the animation spill over */
+  }
+  
+  /* Adjust scrollbar for mobile */
+  ::-webkit-scrollbar {
+    height: 8px;
+    width: 3px;
+  }
+}

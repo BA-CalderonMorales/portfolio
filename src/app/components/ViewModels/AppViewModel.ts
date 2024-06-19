@@ -5,12 +5,14 @@ export class AppViewModel {
     loading: boolean = true;
     themes: string[] = ['default', 'modern', 'dracula', 'earthly'];
     theme?: string = 'default';
+    currentPath: string = '';
 
     constructor() {
 
         makeObservable(this, {
 
             // observables
+            currentPath: observable,
             loading: observable,
             themes: observable,
             theme: observable,
@@ -19,6 +21,7 @@ export class AppViewModel {
             checkLocalStorage: action,
             initialize: action,
             onNavigationBarThemeSwitch: action,
+            setCurrentPath: action,
             setTheme: action
 
         });
@@ -55,6 +58,12 @@ export class AppViewModel {
         this.setTheme(event.currentTarget.id || 'default');
 
     };
+
+    setCurrentPath = (path: string) => {
+
+        this.currentPath = path;
+
+    }
 
     setTheme = (theme: string) => {
 

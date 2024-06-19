@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { observer } from 'mobx-react';
 import { AppViewModel } from '../ViewModels/AppViewModel';
+import { Canvas } from "@react-three/fiber";
+import Scene from "@/app/components/Views/Scene";
+import { usePathname } from 'next/navigation';
 
 interface MainProps {
 
@@ -10,14 +13,50 @@ interface MainProps {
 }
 
 export const Main = observer((props : MainProps) => {
+    const pathname = usePathname();
+    const [path, setPath] = useState<string>('');
+
+    useEffect(() => {
+
+        const path = pathname.split("/");
+
+        setPath(path[3] || ''); // home, about, work-history, skills, contact
+
+    }, []);
+
+    useEffect(() => {
+
+        if (props.viewModel?.setCurrentPath) {
+
+            props.viewModel?.setCurrentPath(path);
+
+        }
+
+    }, [path]); // listens to path changes...
 
     return (
 
-        <main className={`theme-${props.viewModel?.theme}`} data-testid='main-content'>
+        <>
 
-            {props.children}
+            <Canvas
+                className={`
+                    theme-${props.viewModel?.theme} threejs-animation
+                    ${props.viewModel?.currentPath}
+                `}
+                gl={{ antialias: false }}
+            >
 
-        </main>
+                <Scene />
+
+            </Canvas>
+
+            <main className={`theme-${props.viewModel?.theme} ${props.viewModel?.currentPath}`} data-testid='main-content'>
+
+                {props.children}
+
+            </main>
+
+        </>
 
     );
 
