@@ -26,7 +26,7 @@
     padding: clamp(var(--padding-sm), 2vw + var(--padding-base), var(--padding-lg));
     margin: 1rem 1rem 1rem 1rem;
     border: none !important;
-    background-color: var(--bs-alpha) !important;
+    background-color: transparent !important;
     color: var(--bs-foxtrot) !important;
     width: 90vw;
 
@@ -47,12 +47,6 @@
     text-decoration: underline;
 
     color: var(--bs-bravo) !important;
-}
-
-.sectionCustomHeader {
-
-    color: var(--bs-bravo) !important;
-
 }
 
 .sectionParagraph {

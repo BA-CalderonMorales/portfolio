@@ -11,7 +11,7 @@ export const sectionViewModels = [
         sectionHeaderStyleOverrides: `
         border-bottom border-secondary
         text-center pb-2
-        col-auto display-5 sectionCustomHeader` 
+        col-auto display-5` 
     }),
     new SectionViewModel({
         id: "about",
