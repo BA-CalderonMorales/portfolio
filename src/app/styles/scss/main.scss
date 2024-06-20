@@ -78,6 +78,7 @@ $themes: (
 }
 
 main {
+    height: 100% !important;
     font-family: 'Dejavu Sans Mono', monospace !important;
     font-variant-numeric: tabular-nums lining-nums !important;
     font-kerning: none !important;
@@ -160,7 +161,7 @@ body {
     .contact,
     .work-history,
     .skills {
-        height: 150vh !important;
+        // height: 100% !important;
     }
 }
 

@@ -17,7 +17,7 @@ canvas {
 
 .threejs-animation {
     position: absolute !important;
-    height: 150vh !important;
+    height: 100% !important;
     overflow: hidden !important;
     -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent);
     mask-image: linear-gradient(to bottom, black 75%, transparent);
@@ -26,7 +26,7 @@ canvas {
 /* Mobile styles */
 @media only screen and (max-width: 600px) {
   .threejs-animation {
-    height: 175vh !important; /* Adjust the height for mobile screens */
+    height: 100% !important; /* Adjust the height for mobile screens */
     overflow: visible !important; /* Let the animation spill over */
   } 
 }
