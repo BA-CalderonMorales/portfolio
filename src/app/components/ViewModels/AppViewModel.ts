@@ -5,20 +5,24 @@ export class AppViewModel {
     loading: boolean = true;
     themes: string[] = ['default', 'modern', 'dracula', 'earthly'];
     theme?: string = 'default';
+    currentPath: string = '';
 
     constructor() {
 
         makeObservable(this, {
 
             // observables
+            currentPath: observable,
             loading: observable,
             themes: observable,
             theme: observable,
 
             // actions
             checkLocalStorage: action,
+            getAnimationColor: action,
             initialize: action,
             onNavigationBarThemeSwitch: action,
+            setCurrentPath: action,
             setTheme: action
 
         });
@@ -36,6 +40,22 @@ export class AppViewModel {
         this.setTheme(theme || 'earthly');
 
     }
+
+    getAnimationColor = () => {
+
+        if (this.theme === 'dracula') {
+            return "#f8f8f2"; // $dracula-white
+        }
+
+        if (this.theme === 'modern') {
+            return '#6f42c1'; // $modern-purple
+        }
+
+        if (this.theme === 'earthly') {
+            return '#A23C2C'; // $earthly-red
+        }
+
+    };
 
     initialize = () => {
 
@@ -55,6 +75,12 @@ export class AppViewModel {
         this.setTheme(event.currentTarget.id || 'default');
 
     };
+
+    setCurrentPath = (path: string) => {
+
+        this.currentPath = path;
+
+    }
 
     setTheme = (theme: string) => {
 
