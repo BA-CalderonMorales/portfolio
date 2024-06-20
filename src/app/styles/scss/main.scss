@@ -62,7 +62,23 @@ $themes: (
 
 }
 
+* {
+    -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar {
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 4px;
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner {
+}
+
 main {
+    height: 100% !important;
     font-family: 'Dejavu Sans Mono', monospace !important;
     font-variant-numeric: tabular-nums lining-nums !important;
     font-kerning: none !important;
@@ -74,10 +90,84 @@ body {
     font-variant-numeric: tabular-nums lining-nums !important;
     font-kerning: none !important;
     background-color: var(--bs-delta) !important;
+
+    canvas {
+
+        color: var(--bs-bravo) !important;
+
+    }
+
+
+    .theme-modern {
+
+        .content {
+
+            div {
+
+                color: var(--bs-foxtrot) !important;
+
+            }
+
+        }
+
+        .border-bottom {
+
+            border-color: var(--bs-alpha) !important;
+
+        }
+
+
+    }
+
+    .theme-earthly {
+
+        .content {
+
+            div {
+
+                color: var(--bs-bravo) !important;
+
+            }
+
+        }
+
+        .border-bottom {
+
+            border-color: var(--bs-alpha) !important;
+
+        }
+
+    }
+
+    .theme-dracula {
+
+        .content {
+
+            div {
+
+                color: var(--bs-bravo) !important;
+
+            }
+
+        }
+
+        .border-bottom {
+
+            border-color: var(--bs-bravo) !important;
+
+        }
+    }
+
+    .contact,
+    .work-history,
+    .skills {
+        // height: 100% !important;
+    }
 }
 
 /** Must be imported after adjustments to Bootstrap variables */
 @import 'bootstrap/scss/bootstrap.scss';
+@import './components/scene.scss';
 @import './components/navigation.scss';
 @import './components/section.scss';
 @import './components/content/content.scss';
