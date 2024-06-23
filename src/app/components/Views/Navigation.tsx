@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { NavigationViewModel, NavLink } from "@/app/components/ViewModels/NavigationViewModel.ts";
 import { AppViewModel } from "../ViewModels/AppViewModel";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
+import { motion } from "framer-motion";
+import { useMenuAnimation } from "@/app/hooks/useMenuAnimation";
 
 interface NavigationProps {
 
@@ -11,6 +13,8 @@ interface NavigationProps {
 }
 
 export const Navigation = (props: NavigationProps) : JSX.Element => {
+    const [isOpen, setIsOpen] = useState(false);
+    const scope = useMenuAnimation(isOpen);
 
     if (!props.viewModel || !props.viewModel.links || props.viewModel.links.length === 0) return (
         <nav data-testid="navigation-content"></nav>
@@ -63,20 +67,59 @@ export const Navigation = (props: NavigationProps) : JSX.Element => {
 
                                 ) : (
 
-                                    <li id={link.id} key={link.id} className="nav-item dropdown">
+                                    <li
+                                        id={link.id}
+                                        key={link.id}
+                                        className="nav-item dropdown"
+                                        ref={scope}
+                                    >
 
-                                        <Link
-                                            className="nav-link dropdown-toggle"
+                                        <motion.a
                                             href="#"
                                             data-bs-toggle="dropdown"
                                             data-bs-auto-close="outside"
+                                            className="nav-link"
+                                            whileTap={{ scale: 0.97 }}
+                                            onClick={() => setIsOpen(!isOpen)}    
                                         >
 
-                                            {link.text}
+                                            <div className="d-flex align-items-center" style={{width: "10% !important"}}>
+                                                <div style={{paddingRight: "0.5rem"}}>
 
-                                        </Link>
+                                                    {link.text}
 
-                                        <ul className="dropdown-menu shadow navbar-sub-menu">
+                                                </div>
+
+                                                <div
+                                                    className="arrow"
+                                                    style={{
+                                                        transformOrigin: "50% 55%",
+                                                    }}
+                                                >
+                                                    <svg
+                                                        width="15"
+                                                        height="15"
+                                                        viewBox="0 0 20 20"
+                                                        style={{
+                                                            color: "var(--bs-secondary) !important",
+                                                        }}
+                                                        stroke="currentcolor"
+                                                    >
+                                                        <path fill="var(--bs-secondary)" d="M0 7 L 20 7 L 10 16" />
+                                                    </svg>
+                                                </div>
+
+                                            </div>
+
+                                        </motion.a>
+
+                                        <ul
+                                            className="dropdown-menu shadow navbar-sub-menu"
+                                            style={{
+                                                pointerEvents: isOpen ? "auto" : "none",
+                                                clipPath: "inset(10% 50% 90% 50% round 10px)",
+                                            }}
+                                        >
                                             
                                                 {link.options.map(( option: NavLink ) => (
 
