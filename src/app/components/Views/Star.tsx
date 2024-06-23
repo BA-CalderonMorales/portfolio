@@ -1,13 +1,12 @@
-import { useRef, useLayoutEffect, useContext } from "react";
+import { useRef, useLayoutEffect } from "react";
 import { degreesToRadians, mix } from "popmotion";
-import { AppContext } from "@/app/context";
 import THREE from "three";
 
-export const Star = ({ p }: { p: number }) => {
-    const ref = useRef<THREE.Mesh>(null);
-    const {appViewModel} = useContext(AppContext);
+export const Star = ({ p, color }: { p: number, color: string }) => {
 
-    useLayoutEffect(() => {
+    const ref = useRef<THREE.Mesh>(null);
+
+    const updateLayout = () => {
 
         const distance = mix(1.75, 10, Math.random());
 
@@ -21,9 +20,19 @@ export const Star = ({ p }: { p: number }) => {
 
         ref.current!.position.setFromSphericalCoords(distance, yAngle, xAngle);
 
-    });
+        ref.current!.lookAt(0, 0, 0);
 
-    let color = appViewModel.getAnimationColor();
+        ref.current!.updateMatrixWorld();
+
+        ref.current!.scale.setScalar(0.5 + Math.random());
+
+    };
+
+    useLayoutEffect(() => {
+
+        updateLayout();
+
+    });
 
     return (
         <mesh ref={ref}>
@@ -31,7 +40,7 @@ export const Star = ({ p }: { p: number }) => {
             <meshBasicMaterial
                 color={color}
                 wireframe={true}
-                wireframeLinewidth={1.5}
+                wireframeLinewidth={0.5}
             />
         </mesh>
     );
