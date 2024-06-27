@@ -1,13 +1,33 @@
 import { useThree, useFrame } from "@react-three/fiber";
-import { useLayoutEffect } from "react";
+import { useLayoutEffect, useMemo } from "react";
 import { useTransform, useScroll, useTime} from "framer-motion";
 import { degreesToRadians, progress } from "popmotion";
 import { Star } from "./Star";
 import { Icosahedron } from "./Icosahedron";
+import * as THREE from "three";
+
+const getStars = (numStars: number) => {
+
+    const stars = [];
+
+    for (let i = 0; i < numStars; i++) {
+
+        stars.push(
+            <Star
+                key={i}
+                p={progress(0, numStars, i)}
+            />
+        );
+
+    }
+
+    return stars;
+
+};
 
 export default function Scene({ numStars = 250 }) {
 
-    const gl = useThree((state) => state.gl);
+    const { gl } = useThree((state) => state);
 
     const { scrollYProgress } = useScroll();
 
@@ -31,24 +51,17 @@ export default function Scene({ numStars = 250 }) {
 
         camera.updateProjectionMatrix();
 
-        camera.lookAt(0, 0, 0);
+        camera.lookAt(new THREE.Vector3(0, 0, 0));
 
     });
 
-    useLayoutEffect(() => gl.setPixelRatio(0.75), [gl]);
+    useLayoutEffect(() => {
 
-    const stars = [];
+        return gl.setPixelRatio(0.75);
 
-    for (let i = 0; i < numStars; i++) {
+    }, [gl]);
 
-        stars.push(
-            <Star
-                key={i}
-                p={progress(0, numStars, i)}
-            />
-        );
-
-    }
+    const stars = useMemo(() => getStars(numStars), [numStars]);
 
     return (
         <>
