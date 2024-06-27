@@ -4,6 +4,7 @@ import { AppViewModel } from '../ViewModels/AppViewModel';
 import { Canvas } from "@react-three/fiber";
 import Scene from "@/app/components/Views/Scene";
 import { usePathname } from 'next/navigation';
+import Layout from './Layout/Layout';
 
 interface MainProps {
 
@@ -38,7 +39,7 @@ export const Main = observer((props : MainProps) => {
 
     return (
 
-        <>
+        <Layout>
 
             <Canvas
                 className={`
@@ -58,7 +59,7 @@ export const Main = observer((props : MainProps) => {
 
             </main>
 
-        </>
+        </Layout>
 
     );
 

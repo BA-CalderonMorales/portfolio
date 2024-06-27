@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { NavigationViewModel, NavLink } from "@/app/components/ViewModels/NavigationViewModel.ts";
 import { AppViewModel } from "../ViewModels/AppViewModel";
