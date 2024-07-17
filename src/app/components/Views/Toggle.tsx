@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from "react";
+import React, { memo } from "react";
 import { SVGMotionProps, motion } from "framer-motion";
 
 interface PathProps {
@@ -16,27 +16,27 @@ type PathPropsWithMotion = PathProps & SVGMotionProps<SVGPathElement>;
 const variants: { [key: string]: any } = {
     open: (custom: number) => ({
         d: custom === 0
-        ? "M0 0 L40 30" // top
+        ? "M3 3 L22 22" // top
         : custom === 1
-        ? "M0 0 L0 0"   // middle
+        ? "M12 12 L12 12"   // middle
         : custom === 2
-        ? "M100 -50 L-5 22"  // bottom
-        : "M0 0 L0 0",  // default 
+        ? "M3 22 L22 3"  // bottom
+        : "M0 0",  // default 
         opacity: 1
     }),
     closed: (custom: number) => ({
         d: custom === 0
-        ? "M0 1h38" // top
+        ? "M3 6 L22 6" // top
         : custom === 1
-        ? "M0 10h38" // middle
+        ? "M3 12 L22 12" // middle
         : custom === 2
-        ? "M0 20h38" // bottom
-        : "M0 0 L0 0", // default
+        ? "M3 18 L22 18" // bottom
+        : "M0 0", // default
         opacity: 1
     })
 };
 
-const Path = (props : PathPropsWithMotion) => {
+const Path = (props: PathPropsWithMotion) => {
 
     return <motion.path
         animate={props.isOpen ? "open" : "closed"}
