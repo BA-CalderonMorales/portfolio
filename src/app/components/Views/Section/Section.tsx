@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { observer } from "mobx-react";
-import { Section as SectionType } from "../../ViewModels/SectionViewModel";
+import { Section as SectionType } from "@/app/components/ViewModels/SectionViewModel.ts";
+import TypeWriterTitle from "@/app/components/Views/TypeWriterTitle";
 
 interface SectionProps {
 
@@ -32,7 +33,10 @@ export const Section = observer((props: SectionProps): React.JSX.Element => {
                                 <section key={index} id={props.viewModel?.id}>
 
                                     {!props.viewModel?.isHero && (
-                                        <h2 className={sectionHeaderStyles}>{props.viewModel?.title}</h2>
+                                        <TypeWriterTitle
+                                            sectionHeaderStyles={sectionHeaderStyles}
+                                            text={props.viewModel?.title}
+                                        />
                                     )}
                                 
                                     {Component}
@@ -60,7 +64,10 @@ export const Section = observer((props: SectionProps): React.JSX.Element => {
                 <section id={props.viewModel.id} className={sectionWrapperStyles}>
 
                     {!props.viewModel.isHero && (
-                        <h2 className={sectionHeaderStyles}>{props.viewModel.title}</h2>
+                        <TypeWriterTitle
+                            sectionHeaderStyles={sectionHeaderStyles}
+                            text={props.viewModel.title}
+                        />
                     )}
 
                     {typeof props.viewModel.content === 'string' && (
