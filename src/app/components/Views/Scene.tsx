@@ -1,13 +1,20 @@
 import { useThree, useFrame } from "@react-three/fiber";
-import { useLayoutEffect } from "react";
-import { useTransform, useScroll, useTime} from "framer-motion";
-import { degreesToRadians, progress } from "popmotion";
-import { Star } from "./Star";
+import { useLayoutEffect, useContext, useCallback } from "react";
+import { useTransform, useScroll, useTime } from "framer-motion";
+import { degreesToRadians } from "popmotion";
 import { Icosahedron } from "./Icosahedron";
+import * as THREE from "three";
+import StarWrapper from "./StarWrapper";
+import { AppContext } from "@/app/context";
 
 export default function Scene({ numStars = 250 }) {
 
-    const gl = useThree((state) => state.gl);
+    const {
+        gl,
+        camera
+    } = useThree((state) => state) as { gl: THREE.WebGLRenderer, camera: THREE.PerspectiveCamera };
+
+    const { appViewModel } = useContext(AppContext);
 
     const { scrollYProgress } = useScroll();
 
@@ -17,43 +24,56 @@ export default function Scene({ numStars = 250 }) {
         [0.001, degreesToRadians(180)]
     );
 
-    const distance = useTransform(scrollYProgress, [0, 1], [10, 3]);
+    const distance = useTransform(
+        scrollYProgress,
+        [25, 1000],
+        [6, 10]
+    );
 
     const time = useTime();
 
-    useFrame(({ camera }) => {
+    const updateCamera = useCallback(() => {
 
         camera.position.setFromSphericalCoords(
             distance.get(),
             yAngle.get(),
-            time.get() * 0.0005
+            time.get() * 0.00005
         );
 
         camera.updateProjectionMatrix();
 
-        camera.lookAt(0, 0, 0);
+        camera.lookAt(new THREE.Vector3(0, 0, 0));
+
+        return camera;
+
+    }, [camera, distance, yAngle, time, appViewModel.theme]);
+
+    const animationColor = appViewModel.getAnimationColor();
+
+    const updateLayoutEffect = useCallback(() => {
+
+        gl.setPixelRatio(0.75);
+
+        gl.setSize(window.innerWidth, window.innerHeight);
+
+    }, [gl, appViewModel.theme]);
+
+    useFrame(() => {
+
+        updateCamera();
 
     });
 
-    useLayoutEffect(() => gl.setPixelRatio(0.75), [gl]);
+    useLayoutEffect(() => {
 
-    const stars = [];
+        updateLayoutEffect();
 
-    for (let i = 0; i < numStars; i++) {
-
-        stars.push(
-            <Star
-                key={i}
-                p={progress(0, numStars, i)}
-            />
-        );
-
-    }
+    }, [gl, appViewModel.theme]);
 
     return (
         <>
-            <Icosahedron />
-            {stars}
+            <Icosahedron animationColor={animationColor} />
+            <StarWrapper animationColor={animationColor} numStars={numStars} />
         </>
     );
 }

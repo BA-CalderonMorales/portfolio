@@ -2,10 +2,14 @@ import { action, makeObservable, observable } from "mobx";
 
 export class AppViewModel {
 
-    loading: boolean = true;
-    themes: string[] = ['default', 'modern', 'dracula', 'earthly'];
-    theme?: string = 'default';
-    currentPath: string = '';
+    public loading: boolean = true;
+    public themes: string[] = ['default', 'modern', 'dracula', 'earthly'];
+    public theme?: string = 'dracula';
+    public currentPath: string = ''; 
+
+    public static DRACULA_WHITE = "#f8f8f2";
+    public static MODERN_PURPLE = '#6f42c1';
+    public static EARTHLY_RED = '#A23C2C';
 
     constructor() {
 
@@ -37,25 +41,25 @@ export class AppViewModel {
 
         const theme = window.localStorage.getItem('my-portfolio-theme');
 
-        this.setTheme(theme || 'earthly');
+        this.setTheme(theme || 'dracula' );
 
     }
 
     getAnimationColor = () => {
 
         if (this.theme === 'dracula') {
-            return "#f8f8f2"; // $dracula-white
+            return AppViewModel.DRACULA_WHITE;
         }
 
         if (this.theme === 'modern') {
-            return '#6f42c1'; // $modern-purple
+            return AppViewModel.MODERN_PURPLE;
         }
 
         if (this.theme === 'earthly') {
-            return '#A23C2C'; // $earthly-red
+            return AppViewModel.EARTHLY_RED;
         }
 
-    };
+    }
 
     initialize = () => {
 
@@ -90,7 +94,7 @@ export class AppViewModel {
 
         if (!newTheme) {
 
-            this.theme = 'default';
+            this.theme = 'dracula';
 
         } else {
 
@@ -98,7 +102,7 @@ export class AppViewModel {
 
         }
 
-        window.localStorage.setItem('my-portfolio-theme', this.theme || 'default');
+        window.localStorage.setItem('my-portfolio-theme', this.theme);
 
     };
 
