@@ -8,7 +8,7 @@ describe('Home', () => {
 
         // Arrange
 
-        render(<Navigation viewModel={null} />);
+        render(<Navigation viewModel={null} appViewModel={null} />);
 
         // Act
 
@@ -36,7 +36,7 @@ describe('Home', () => {
 
         // Act
 
-        render(<Navigation viewModel={navigationViewModel} />);
+        render(<Navigation viewModel={navigationViewModel} appViewModel={null} />);
 
         const navigationContent = screen.getByTestId('navigation-content');
 
