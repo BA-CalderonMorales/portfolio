@@ -1,24 +1,24 @@
-import { makeObservable, observable, action } from 'mobx';
+import { makeObservable, observable, action, runInAction } from 'mobx';
 
 export class TypeWriterTitleViewModel {
     displayedText: string = '';
-    isBlinking: boolean = true;
+    isBlinking: boolean = false;
     fullText: string;
 
     private typingInterval: NodeJS.Timeout | null = null;
+    private blinkingTimeout: NodeJS.Timeout | null = null;
 
     constructor(text: string) {
         this.fullText = text;
         makeObservable(this, {
-            // observables
             displayedText: observable,
             isBlinking: observable,
-
-            // actions
             startTyping: action,
             stopTyping: action,
-            setDisplayedText: action,
-            toggleBlinking: action
+            startBlinking: action,
+            toggleBlinking: action,
+            cleanup: action,
+            setDisplayedText: action
         });
     }
 
@@ -30,25 +30,40 @@ export class TypeWriterTitleViewModel {
                 currentIndex++;
             } else {
                 this.stopTyping();
+                this.startBlinking();
             }
         }, 100); // Adjust typing speed here
-    }
-
-    stopTyping = () => {
-        if (this.typingInterval) {
-            clearInterval(this.typingInterval);
-        }
     }
 
     setDisplayedText = (text: string) => {
         this.displayedText = text;
     }
 
+    stopTyping = () => {
+        if (this.typingInterval) {
+            clearInterval(this.typingInterval);
+            this.typingInterval = null;
+        }
+    }
+
+    startBlinking = () => {
+        this.toggleBlinking();
+    }
+
     toggleBlinking = () => {
-        this.isBlinking = !this.isBlinking;
+        runInAction(() => {
+            this.isBlinking = !this.isBlinking;
+        });
+        this.blinkingTimeout = setTimeout(() => {
+            this.toggleBlinking();
+        }, this.isBlinking ? 800 : 400); // Blink on for 800ms, off for 400ms
     }
 
     cleanup = () => {
         this.stopTyping();
+        if (this.blinkingTimeout) {
+            clearTimeout(this.blinkingTimeout);
+            this.blinkingTimeout = null;
+        }
     }
 }

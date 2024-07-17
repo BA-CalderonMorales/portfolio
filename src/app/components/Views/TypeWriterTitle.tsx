@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { observer } from 'mobx-react';
 import { motion, useAnimation } from 'framer-motion';
 import { TypeWriterTitleViewModel } from '@/app/components/ViewModels/TypeWriterTitleViewModel';
@@ -9,10 +9,8 @@ interface TypeWriterTitleProps {
 }
 
 const TypeWriterTitle: React.FC<TypeWriterTitleProps> = observer((props) => {
-    const [viewModel] = useState(() => new TypeWriterTitleViewModel(props.text ?? ""));
+    const viewModel = useMemo(() => new TypeWriterTitleViewModel(props.text ?? ""), [props.text]);
     const controls = useAnimation();
-    const [blinkInterval, setBlinkInterval] = useState<NodeJS.Timeout | null>(null);
-    const isTypingComplete = useRef(false);
 
     useEffect(() => {
         viewModel.startTyping();
@@ -21,38 +19,8 @@ const TypeWriterTitle: React.FC<TypeWriterTitleProps> = observer((props) => {
             transition: { duration: 0.5 }
         });
 
-        return () => {
-            viewModel.cleanup();
-            stopBlinking();
-        };
+        return () => viewModel.cleanup();
     }, [viewModel, controls]);
-
-    useEffect(() => {
-        if (isTypingComplete.current) {
-            startBlinking();
-        }
-    }, [viewModel.displayedText]);
-
-    const startBlinking = () => {
-        const interval = setInterval(() => {
-            viewModel.toggleBlinking();
-        }, 800); // Adjust blinking speed here
-        setBlinkInterval(interval);
-    };
-
-    const stopBlinking = () => {
-        if (blinkInterval) {
-            clearInterval(blinkInterval);
-        }
-    };
-
-    useEffect(() => {
-        const typingTimeout = setTimeout(() => {
-            isTypingComplete.current = true;
-        }, viewModel.fullText.length * 100); // Adjust typing speed here
-
-        return () => clearTimeout(typingTimeout);
-    }, [viewModel.fullText]);
 
     return (
         <h2 className={props.sectionHeaderStyles}>
