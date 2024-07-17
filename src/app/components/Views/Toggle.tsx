@@ -47,6 +47,7 @@ const Path = (props: PathPropsWithMotion) => {
         strokeLinecap="round"
         variants={variants}
         custom={props.custom}
+        d={variants[props.isOpen ? "open" : "closed"](props.custom).d || "M0 0"}
     />
 
 };
