@@ -7,6 +7,7 @@ import { HomeLifeSection } from "@/app/components/Views/Section/HomeLifeSection.
 import { AppContext } from "@/app/context";
 import { useContext } from "react";
 import { Footer } from "@/app/components/Views/Footer";
+import SmoothScrollWrapper from "@/app/components/Views/SmoothScrollWrapper";
 
 const Home = () => {
 
@@ -14,7 +15,7 @@ const Home = () => {
         appViewModel,
         footerViewModel,
         navigationViewModel
-    } = useContext(AppContext);
+    } = useContext(AppContext); 
 
     return (
 
@@ -28,13 +29,13 @@ const Home = () => {
 
                 </div>
 
-                <div className="allSections">
+                <SmoothScrollWrapper>
 
                     <HomeSection key={'home-section'} data-testid='home-section' />
 
                     <HomeLifeSection key={'home-life-section'} data-testid='home-life-section' />
 
-                </div>
+                </SmoothScrollWrapper>
 
             </Main>
 

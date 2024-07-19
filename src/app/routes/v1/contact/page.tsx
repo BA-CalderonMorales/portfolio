@@ -7,6 +7,7 @@ import { ContactSection } from "@/app/components/Views/Section/ContactSection";
 import { useContext } from "react";
 import { AppContext } from "@/app/context";
 import { Footer } from "@/app/components/Views/Footer";
+import SmoothScrollWrapper from "@/app/components/Views/SmoothScrollWrapper";
 
 const Contact = observer(() : JSX.Element => {
 
@@ -28,11 +29,11 @@ const Contact = observer(() : JSX.Element => {
 
                 </div>
 
-                <div className="allSections">
+                <SmoothScrollWrapper>
 
                     <ContactSection />
 
-                </div>
+                </SmoothScrollWrapper>
 
             </Main>
 

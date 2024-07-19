@@ -7,6 +7,7 @@ import { WorkHistorySection } from "@/app/components/Views/Section/WorkHistorySe
 import { useContext } from "react";
 import { AppContext } from "@/app/context";
 import { Footer } from "@/app/components/Views/Footer";
+import SmoothScrollWrapper from "@/app/components/Views/SmoothScrollWrapper";
 
 const WorkHistory = observer(() : JSX.Element => {
 
@@ -28,11 +29,11 @@ const WorkHistory = observer(() : JSX.Element => {
 
                 </div>
 
-                <div className="allSections">
+                <SmoothScrollWrapper>
 
                     <WorkHistorySection />
 
-                </div>
+                </SmoothScrollWrapper>
 
             </Main>
 

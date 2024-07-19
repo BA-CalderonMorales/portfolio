@@ -174,3 +174,24 @@ body {
 @import './components/content/about.scss';
 @import './components/content/contact.scss';
 @import './components/footer.scss';
+
+html, body {
+  height: 100%;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.allSections {
+  padding-top: [height of your navigation];  /* Adjust this value */
+}
+
+footer {
+  position: relative;
+  z-index: 10;
+}
