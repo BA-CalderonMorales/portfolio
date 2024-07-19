@@ -1,10 +1,10 @@
 import { useThree, useFrame } from "@react-three/fiber";
-import { useLayoutEffect, useContext, useCallback } from "react";
+import { useLayoutEffect, useContext, useCallback, useMemo } from "react";
 import { useTransform, useScroll, useTime } from "framer-motion";
 import { degreesToRadians } from "popmotion";
-import { Icosahedron } from "./Icosahedron";
+import { CenterPiece } from "./CenterPiece";
 import * as THREE from "three";
-import StarWrapper from "./StarWrapper";
+import FloaterWrapper from "./FloaterWrapper";
 import { AppContext } from "@/app/context";
 
 export default function Scene({ numStars = 250 }) {
@@ -70,10 +70,29 @@ export default function Scene({ numStars = 250 }) {
 
     }, [gl, appViewModel.theme]);
 
+    const floaters = useMemo(() => {
+
+        return [1.1, 2.2, -1.1, -2.2].map((depth, i) => (
+
+            <FloaterWrapper
+                key={i}
+                numStars={numStars}
+                depth={depth}
+                animationColor={animationColor}
+            />
+
+        ));
+
+    }, [numStars, animationColor, appViewModel.theme]);
+
     return (
         <>
-            <Icosahedron animationColor={animationColor} />
-            <StarWrapper animationColor={animationColor} numStars={numStars} />
+            <CenterPiece
+                animationColor={animationColor}
+            />
+
+            {floaters}
+
         </>
     );
 }
