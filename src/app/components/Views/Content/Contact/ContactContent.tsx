@@ -1,9 +1,13 @@
 import { Content } from "../Content";
 import { observer } from "mobx-react";
 import Link from "next/link";
-import React from "react";
+import React, { useContext } from "react";
+import { AppViewModel } from "@/app/components/ViewModels/AppViewModel";
+import { AppContext } from "@/app/context";
 
-export const ContactContent = observer(() : React.JSX.Element => {
+export const ContactContent = observer((): React.JSX.Element => {
+
+    const { appViewModel } = useContext(AppContext);
 
     return (
 
@@ -18,14 +22,14 @@ export const ContactContent = observer(() : React.JSX.Element => {
 
                 <div>
 
-                    <ul> 
+                    <ul>
 
                         <li>
 
                             Email
 
                         </li>
-                    
+
                         <li title='Nothing happening? Open this up in Chrome and try again.'>
 
                             <a href="mailto:bacm640@gmail.com">Send me an email</a>
@@ -47,6 +51,23 @@ export const ContactContent = observer(() : React.JSX.Element => {
                         <li>
 
                             <Link href="https://github.com/BA-CalderonMorales">GitHub</Link>
+
+                        </li>
+
+                        <li>
+
+                            Download my resume
+
+                        </li>
+
+                        <li id="resume">
+
+                            <Link
+                                href="#resume"
+                                onClick={appViewModel.downloadResume}
+                            >
+                                Resume
+                            </Link>
 
                         </li>
 

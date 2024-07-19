@@ -20,7 +20,7 @@ interface NavigationProps {
 export const Navigation = (props: NavigationProps): JSX.Element => {
 
     const [isNavOpen, setIsNavOpen] = useLocalStorage('isNavOpen', '0');
-    const [isThemeMenuOpen, setIsThemeMenuOpen] = useLocalStorage('isThemeMenuOpen', '0');
+    const [isThemeMenuOpen, setIsThemeMenuOpen] = useLocalStorage('isThemeMenuOpen', '0'); 
 
     const scope = useMenuAnimation(isThemeMenuOpen === '1');
     const dropdownRef = useRef(null);
@@ -123,7 +123,10 @@ export const Navigation = (props: NavigationProps): JSX.Element => {
                                             href={link.url}
                                             key={link.id}
                                             style={{ cursor: "pointer" }}
-                                            onClick={() => setIsNavOpen('0')}
+                                            onClick={() => {
+                                                setIsNavOpen('0');
+                                                props.viewModel?.clickLink(link.id, props.appViewModel ?? undefined);
+                                            }}
                                         >
                                             {link.text}
                                         </Link>
