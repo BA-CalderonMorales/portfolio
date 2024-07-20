@@ -1,10 +1,10 @@
 import React from 'react'
-import { OctahedronGeometry as OctahedronGeometryThree } from 'three';
+import * as THREE from 'three';
 
 interface OctahedronGeometryProps {
-    forwardRef?: React.RefObject<OctahedronGeometryThree>;
+    octahedronRef?: React.RefObject<THREE.OctahedronGeometry>;
     args?: [radius: number, detail: number];
-    scale?: (x: number, y: number, z: number) => OctahedronGeometryThree;
+    scale?: (x: number, y: number, z: number) => THREE.OctahedronGeometry;
 }
 
 function OctahedronGeometry(props : OctahedronGeometryProps) {
@@ -12,12 +12,14 @@ function OctahedronGeometry(props : OctahedronGeometryProps) {
     let args = props.args || [1, 1];
 
     return (
+
         <octahedronGeometry
-            ref={props.forwardRef}
+            ref={props.octahedronRef}
             args={args}
             scale={props.scale}
         />
-    )
+
+    );
 
 }
 

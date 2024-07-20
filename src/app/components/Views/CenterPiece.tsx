@@ -1,5 +1,5 @@
 import { useFrame, useThree } from "@react-three/fiber";
-import React, { useEffect, useMemo, useRef } from "react";
+import React, { forwardRef, useCallback, useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
 import { AppViewModel } from "@/app/components/ViewModels/AppViewModel";
 import Shape from '@/app/components/Views/Shape'
@@ -131,14 +131,21 @@ export const CenterPiece = ({ animationColor } : CenterPieceProps ) => {
     const ambientLight = useRef(new THREE.AmbientLight(color, 0.5));
     ambientLight.current.position.set(Math.random() * 2, Math.random() * 2, Math.random() * 2);
 
+    const blobAlpha = useRef<THREE.Mesh>(null);
+    const blobBravo = useRef<THREE.Mesh>(null);
+    const blobCharlie = useRef<THREE.Mesh>(null);
 
-    return (
+    const generateShape = useCallback((shape : any) => {
 
-        <>
+        return (
 
             <mesh>
 
-                <Shape shape='icosahedron' />
+                <Shape
+                    shape={shape.shape}
+                    color={shape.color}
+                    blobRef={shape.blobRef}
+                />
 
                 <Material
                     type='toon'
@@ -151,7 +158,7 @@ export const CenterPiece = ({ animationColor } : CenterPieceProps ) => {
                     normalMapType={THREE.TangentSpaceNormalMap}
                     normalScale={new THREE.Vector2(2, 1)}
                 /> 
-
+    
                 <Material
                     type='toon'
                     fog={true}
@@ -163,7 +170,7 @@ export const CenterPiece = ({ animationColor } : CenterPieceProps ) => {
                     normalMapType={THREE.TangentSpaceNormalMap}
                     normalScale={new THREE.Vector2(1, 1)}
                 /> 
-
+    
                 <Lighting
                     forwardRef={pointLightAlpha}
                     type="point"
@@ -171,7 +178,7 @@ export const CenterPiece = ({ animationColor } : CenterPieceProps ) => {
                     position={new THREE.Vector3(0, 0, 0)}
                     intensity={0.45}
                 />
-
+    
                 <Lighting
                     forwardRef={pointLightBravo}
                     type="point"
@@ -179,7 +186,7 @@ export const CenterPiece = ({ animationColor } : CenterPieceProps ) => {
                     position={new THREE.Vector3(0, 0, 0)}
                     intensity={0.45}
                 />
-
+    
                 <Lighting
                     forwardRef={pointLightCharlie}
                     type="point"
@@ -187,7 +194,7 @@ export const CenterPiece = ({ animationColor } : CenterPieceProps ) => {
                     position={new THREE.Vector3(0, 0, 0)}
                     intensity={0.45}
                 />
-
+    
                 <Lighting
                     forwardRef={ambientLight}
                     type="ambient"
@@ -197,6 +204,44 @@ export const CenterPiece = ({ animationColor } : CenterPieceProps ) => {
                 />
 
             </mesh>
+
+        );
+
+
+    }, [color, lightMap]);
+
+
+    return (
+
+        <>
+
+            {
+                window.location.pathname.includes("home") && generateShape(
+                                                                {
+                                                                    shape: 'sphere',
+                                                                    color: color,
+                                                                    blobRef: blobAlpha
+                                                                }
+                                                            )
+            }
+            {                                            
+                window.location.pathname.includes("about") && generateShape(
+                    {
+                        shape: 'octahedron',
+                        color: color,
+                        forwardRef: blobBravo 
+                    }
+                )
+            }
+            {
+                window.location.pathname.includes("contact") && generateShape(
+                    {
+                        shape: 'icosahedron',
+                        color: color,
+                        forwardRef: blobCharlie 
+                    }
+                )
+            }
 
         </>
     );
