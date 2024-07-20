@@ -20,11 +20,11 @@ export const Floater = (props : FloaterProps) => {
 
     const updateLayout = useCallback(() => {
 
-        const distance = mix(1.75, 10, Math.random());
+        const distance = mix(1.75, 15, Math.random());
 
         const yAngle = mix(
-            degreesToRadians(80),
-            degreesToRadians(100),
+            degreesToRadians(180),
+            degreesToRadians(50),
             Math.random()
         );
 

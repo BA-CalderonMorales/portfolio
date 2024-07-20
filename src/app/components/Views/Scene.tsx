@@ -7,6 +7,11 @@ import * as THREE from "three";
 import FloaterWrapper from "./FloaterWrapper";
 import { AppContext } from "@/app/context";
 
+const FLOATER_WRAPPERS_TO_CREATE = [
+    1.1,
+    -2.2,
+];
+
 export default function Scene({ numStars = 250 }) {
 
     const {
@@ -72,7 +77,7 @@ export default function Scene({ numStars = 250 }) {
 
     const floaters = useMemo(() => {
 
-        return [1.1, 2.2, -1.1, -2.2].map((depth, i) => (
+        return FLOATER_WRAPPERS_TO_CREATE.map((depth, i) => (
 
             <FloaterWrapper
                 key={i}
