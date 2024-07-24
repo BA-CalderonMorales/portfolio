@@ -1,5 +1,5 @@
 import { useFrame, useThree } from "@react-three/fiber";
-import React, { forwardRef, useCallback, useEffect, useMemo, useRef } from "react";
+import React, { useCallback, useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
 import { AppViewModel } from "@/app/components/ViewModels/AppViewModel";
 import Shape from '@/app/components/Views/Shape'
@@ -131,22 +131,24 @@ export const CenterPiece = ({ animationColor } : CenterPieceProps ) => {
     const ambientLight = useRef(new THREE.AmbientLight(color, 0.5));
     ambientLight.current.position.set(Math.random() * 2, Math.random() * 2, Math.random() * 2);
 
-    const blobAlpha = useRef<THREE.Mesh>(null);
-    const blobBravo = useRef<THREE.Mesh>(null);
-    const blobCharlie = useRef<THREE.Mesh>(null);
+    const blobAlpha = useRef<THREE.Group>(null);
+    const blobBravo = useRef<THREE.Group>(null);
+    const blobCharlie = useRef<THREE.Group>(null);
+    const blobDelta = useRef<THREE.Group>(null);
+    const blobEcho = useRef<THREE.Group>(null);
 
     const generateShape = useCallback((shape : any) => {
 
         return (
 
-            <mesh>
+            <mesh key={shape.key}>
 
                 <Shape
                     shape={shape.shape}
                     color={shape.color}
-                    blobRef={shape.blobRef}
+                    meshRef={shape.meshRef}
                 />
-
+ 
                 <Material
                     type='toon'
                     fog={true}
@@ -154,19 +156,7 @@ export const CenterPiece = ({ animationColor } : CenterPieceProps ) => {
                     emissiveIntensity={1.0}
                     visible={true}
                     transparent={false}
-                    normalMap={lightMap}
-                    normalMapType={THREE.TangentSpaceNormalMap}
-                    normalScale={new THREE.Vector2(2, 1)}
-                /> 
-    
-                <Material
-                    type='toon'
-                    fog={true}
-                    emissive={new THREE.Color(color.equals(new THREE.Color(AppViewModel.DRACULA_WHITE)) ? '#000000' : color)}
-                    emissiveIntensity={1.0}
-                    visible={true}
-                    transparent={false}
-                    normalMap={lightMap}
+                    normalMap={lightMap.clone()}
                     normalMapType={THREE.TangentSpaceNormalMap}
                     normalScale={new THREE.Vector2(1, 1)}
                 /> 
@@ -216,31 +206,31 @@ export const CenterPiece = ({ animationColor } : CenterPieceProps ) => {
         <>
 
             {
-                window.location.pathname.includes("home") && generateShape(
-                                                                {
-                                                                    shape: 'sphere',
-                                                                    color: color,
-                                                                    blobRef: blobAlpha
-                                                                }
-                                                            )
-            }
-            {                                            
-                window.location.pathname.includes("about") && generateShape(
-                    {
-                        shape: 'octahedron',
-                        color: color,
-                        forwardRef: blobBravo 
-                    }
-                )
-            }
-            {
-                window.location.pathname.includes("contact") && generateShape(
-                    {
-                        shape: 'icosahedron',
-                        color: color,
-                        forwardRef: blobCharlie 
-                    }
-                )
+
+                [
+                    blobAlpha,
+                    blobBravo,
+                    blobCharlie,
+                    blobDelta,
+                    blobEcho
+                ].map((blob, index) => {
+
+                    const shapes = [
+                        'floating-orb',
+                    ];
+
+                    const shape = shapes[Math.floor(Math.random() * shapes.length)];
+
+                    return generateShape(
+                        {
+                            shape: shape,
+                            color: color,
+                            meshRef: blob,
+                            key: index
+                        }
+                    )
+                })
+                
             }
 
         </>

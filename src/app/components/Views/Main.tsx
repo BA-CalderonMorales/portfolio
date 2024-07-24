@@ -6,7 +6,6 @@ import Scene from "@/app/components/Views/Scene";
 import { usePathname } from 'next/navigation';
 import Layout from './Layout/Layout';
 import { useLocalStorage } from '@/app/hooks/useLocalStorage';
-import * as THREE from 'three';
 
 interface MainProps {
 
@@ -58,6 +57,10 @@ export const Main = observer((props : MainProps) => {
                     theme-${props.viewModel?.theme} threejs-animation
                     ${props.viewModel?.currentPath}
                 `}
+                camera={{
+                    position: [0, 0, 5],
+                    fov: 75
+                }}
                 gl={{
                     antialias: false,
                     preserveDrawingBuffer: true,

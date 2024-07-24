@@ -1,67 +1,81 @@
-import React, { useMemo } from 'react'
-import { OctahedronGeometry as OctahedronGeometryThree } from 'three';
+import React from 'react'
 import * as THREE from 'three';
+
+// Import your geometry components
 import BoxGeometry from './Geometries/BoxGeometry';
 import IcosahedronGeometry from './Geometries/IcosahedronGeometry';
+import MorphingCubeGeometry from './Geometries/MorphingCubeGeometry';
 import OctahedronGeometry from './Geometries/OctahedronGeometry';
 import BlobGeometry from './Geometries/BlobGeometry';
 import DodecahedronGeometry from './Geometries/DodecahedronGeometry';
 import TorusGeometry from './Geometries/TorusGeometry';
 import SphereGeometry from './Geometries/SphereGeometry';
+import SnakeGeometry from './Geometries/SnakeGeometry';
+import PillGeometry from './Geometries/PillGeometry';
+import DNAGeometry from './Geometries/DNAGeometry';
+import PulsatingSphere from './Geometries/PulsatingSphereGeometry';
+import TwistingRibbon from './Geometries/TwistingRibbonGeometry';
+import RippleDiscGeometry from './Geometries/RippleDiscGeometry';
+import FloatingOrbGeometry from './Geometries/FloatingOrbGeometry';
+import WavingPlaneGeometry from './Geometries/WavingPlaneGeometry';
 
-interface ShapeProps {
-    forwardRef?: React.RefObject<OctahedronGeometryThree>;
+type ShapeTypes =
+    'icosahedron'
+    | 'box'
+    | 'blob'
+    | 'dna'
+    | 'dodecahedron'
+    | 'floating-orb'
+    | 'octahedron'
+    | 'pill'
+    | 'morphing-cube'
+    | 'pulsating-sphere'
+    | 'ripple-disc'
+    | 'snake'
+    | 'sphere'
+    | 'twisting-ribbon'
+    | 'torus'
+    | 'waving-plane';
+
+export interface ShapeProps {
     meshRef?: React.RefObject<THREE.Mesh>;
-    shape?: string | 'icosahedron' | 'box' | 'dodecahedron' | 'octahedron' | 'blob';
+    meshGroupRef?: React.RefObject<THREE.Group>;
+    octahedronRef?: React.RefObject<THREE.OctahedronGeometry>;
+    shape?: ShapeTypes;
     args?: Array<number>;
-    scale?: (x: number, y: number, z: number) => OctahedronGeometryThree;
+    scale?: (x: number, y: number, z: number) => void;
     color?: THREE.Color | string;
 }
 
-const Shape = (props : ShapeProps) => {
+const geometryComponents: Record<ShapeTypes, React.ComponentType<any>> = {
+    blob: BlobGeometry,
+    box: BoxGeometry,
+    dna: DNAGeometry,
+    dodecahedron: DodecahedronGeometry,
+    'floating-orb': FloatingOrbGeometry,
+    icosahedron: IcosahedronGeometry,
+    'morphing-cube': MorphingCubeGeometry,
+    octahedron: OctahedronGeometry,
+    pill: PillGeometry,
+    'pulsating-sphere': PulsatingSphere,
+    'ripple-disc': RippleDiscGeometry,
+    snake: SnakeGeometry,
+    sphere: SphereGeometry,
+    'twisting-ribbon': TwistingRibbon,
+    torus: TorusGeometry,
+    'waving-plane': WavingPlaneGeometry
+};
 
-    let shape = props.shape || null;
+const Shape: React.FC<ShapeProps> = (props) => {
+    const { shape, ...otherProps } = props;
 
-    switch (shape) {
-        case 'blob':
-            return <BlobGeometry {...props} />;
-        case 'box':
-            return <BoxGeometry {...props} />;
-        case 'dodecahedron':
-            return (
-                <DodecahedronGeometry
-                    dodecahedronRef={props.meshRef}
-                    color={props.color}
-                />
-            );
-        case 'icosahedron':
-            return <IcosahedronGeometry {...props} />;
-        case 'octahedron':
-            return (
-                <OctahedronGeometry
-                    octahedronRef={props.forwardRef}
-                    args={props.args ? [props.args[0], props.args[1]] : [1, 1]}
-                    scale={props.scale}
-                />
-            );
-        case 'sphere':
-            return (
-                <SphereGeometry
-                    meshRef={props.meshRef}
-                    color={props.color}
-                />
-            );
-        case 'torus':
-            return (
-                <TorusGeometry
-                    torusRef={props.meshRef}
-                    color={props.color}
-                />
-            );
-        default:
-            return <></>
+    if (!shape || !(shape in geometryComponents)) {
+        return null;
     }
 
-}
+    const GeometryComponent = geometryComponents[shape];
+
+    return <GeometryComponent {...otherProps} />;
+};
 
 export default React.memo(Shape);

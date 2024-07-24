@@ -63,7 +63,7 @@ export const Floater = (props : FloaterProps) => {
         <mesh ref={ref}>
 
             <Shape
-                forwardRef={floaterRef}
+                octahedronRef={floaterRef}
                 shape='octahedron'
                 args={[props.scale?.[0] || 1, props.scale?.[1] || 0]}
             />
