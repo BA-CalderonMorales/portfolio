@@ -18,11 +18,13 @@ import TwistingRibbon from './Geometries/TwistingRibbonGeometry';
 import RippleDiscGeometry from './Geometries/RippleDiscGeometry';
 import FloatingOrbGeometry from './Geometries/FloatingOrbGeometry';
 import WavingPlaneGeometry from './Geometries/WavingPlaneGeometry';
+import BubblingOrbGeometry from './Geometries/BubblingGeometry';
 
 type ShapeTypes =
     'icosahedron'
     | 'box'
     | 'blob'
+    | 'bubbling-orb'
     | 'dna'
     | 'dodecahedron'
     | 'floating-orb'
@@ -50,6 +52,7 @@ export interface ShapeProps {
 const geometryComponents: Record<ShapeTypes, React.ComponentType<any>> = {
     blob: BlobGeometry,
     box: BoxGeometry,
+    'bubbling-orb': BubblingOrbGeometry,
     dna: DNAGeometry,
     dodecahedron: DodecahedronGeometry,
     'floating-orb': FloatingOrbGeometry,

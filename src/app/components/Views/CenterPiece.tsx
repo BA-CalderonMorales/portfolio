@@ -200,38 +200,36 @@ export const CenterPiece = ({ animationColor } : CenterPieceProps ) => {
 
     }, [color, lightMap]);
 
+    const centerPieceGeometry = useMemo(() => {
+
+        return [
+            blobAlpha,
+            blobBravo,
+            blobCharlie,
+            blobDelta,
+            blobEcho
+        ].map((blob, index) => {
+
+            // adding more refs actually makes the animation more interesting
+
+            return generateShape(
+                {
+                    shape: 'bubbling-orb',
+                    color: color,
+                    meshRef: blob,
+                    key: index
+                }
+            )
+        });
+
+    }, []);
+
 
     return (
 
         <>
 
-            {
-
-                [
-                    blobAlpha,
-                    blobBravo,
-                    blobCharlie,
-                    blobDelta,
-                    blobEcho
-                ].map((blob, index) => {
-
-                    const shapes = [
-                        'floating-orb',
-                    ];
-
-                    const shape = shapes[Math.floor(Math.random() * shapes.length)];
-
-                    return generateShape(
-                        {
-                            shape: shape,
-                            color: color,
-                            meshRef: blob,
-                            key: index
-                        }
-                    )
-                })
-                
-            }
+            {centerPieceGeometry}
 
         </>
     );
