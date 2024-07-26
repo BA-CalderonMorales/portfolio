@@ -1,7 +1,6 @@
-import React from 'react'
+import React from 'react';
 import * as THREE from 'three';
 
-// Import your geometry components
 import BoxGeometry from './Geometries/BoxGeometry';
 import IcosahedronGeometry from './Geometries/IcosahedronGeometry';
 import MorphingCubeGeometry from './Geometries/MorphingCubeGeometry';
@@ -19,14 +18,24 @@ import RippleDiscGeometry from './Geometries/RippleDiscGeometry';
 import FloatingOrbGeometry from './Geometries/FloatingOrbGeometry';
 import WavingPlaneGeometry from './Geometries/WavingPlaneGeometry';
 import BubblingOrbGeometry from './Geometries/BubblingGeometry';
+import SpinningCubeGeometry from './Geometries/SpinningCubeGeometry';
+import SwirlingRoomGeometry from './Geometries/SwirlingRoomGeometry';
+import BlackHoleGeometry from './Geometries/BlackHoleGeometry';
+import CloudGeometry from './Geometries/CloudGeometry';
+import CelestialBodyGeometry from './Geometries/CelestialBodyGeometry';
+import FirefliesGeometry from './Geometries/FireFliesGeometry';
 
-type ShapeTypes =
+export type ShapeTypes =
     'icosahedron'
     | 'box'
     | 'blob'
     | 'bubbling-orb'
+    | 'black-hole'
+    | 'cloud'
+    | 'celestial-body'
     | 'dna'
     | 'dodecahedron'
+    | 'fireflies'
     | 'floating-orb'
     | 'octahedron'
     | 'pill'
@@ -35,26 +44,30 @@ type ShapeTypes =
     | 'ripple-disc'
     | 'snake'
     | 'sphere'
+    | 'spinning-cube'
+    | 'swirling-room'
     | 'twisting-ribbon'
     | 'torus'
     | 'waving-plane';
 
 export interface ShapeProps {
     meshRef?: React.RefObject<THREE.Mesh>;
-    meshGroupRef?: React.RefObject<THREE.Group>;
-    octahedronRef?: React.RefObject<THREE.OctahedronGeometry>;
     shape?: ShapeTypes;
     args?: Array<number>;
-    scale?: (x: number, y: number, z: number) => void;
     color?: THREE.Color | string;
+    shadow?: boolean;
 }
 
-const geometryComponents: Record<ShapeTypes, React.ComponentType<any>> = {
+export const geometryComponents: Record<ShapeTypes, React.ComponentType<any>> = {
     blob: BlobGeometry,
     box: BoxGeometry,
+    'black-hole': BlackHoleGeometry,
     'bubbling-orb': BubblingOrbGeometry,
+    'cloud': CloudGeometry,
+    'celestial-body': CelestialBodyGeometry,
     dna: DNAGeometry,
     dodecahedron: DodecahedronGeometry,
+    fireflies: FirefliesGeometry,
     'floating-orb': FloatingOrbGeometry,
     icosahedron: IcosahedronGeometry,
     'morphing-cube': MorphingCubeGeometry,
@@ -64,6 +77,8 @@ const geometryComponents: Record<ShapeTypes, React.ComponentType<any>> = {
     'ripple-disc': RippleDiscGeometry,
     snake: SnakeGeometry,
     sphere: SphereGeometry,
+    'swirling-room': SwirlingRoomGeometry,
+    'spinning-cube': SpinningCubeGeometry,
     'twisting-ribbon': TwistingRibbon,
     torus: TorusGeometry,
     'waving-plane': WavingPlaneGeometry

@@ -4,24 +4,29 @@ import { aboutRecords } from '../content/about.tsx';
 import { contactRecords } from '../content/contact.tsx';
 
 export const sectionViewModels = [
+
     new SectionViewModel({
         id: "home",
         title: "Hello, World!",
         content: homeRecords,
-        sectionHeaderStyleOverrides: `
-        border-bottom border-secondary
-        text-center pb-2
-        col-auto display-5` 
-    }),
-    new SectionViewModel({
-        id: "about",
-        content: aboutRecords,
-        title: "About (via FAQ)",
+        sectionWrapperStyleOverrides: `sectionWrapper sectionFullHeight card`,
         sectionHeaderStyleOverrides: `
         border-bottom border-secondary
         text-center pb-2
         col-auto display-5 sectionCustomHeader` 
     }),
+
+    new SectionViewModel({
+        id: "about",
+        content: aboutRecords,
+        title: "About (via FAQ)",
+        sectionWrapperStyleOverrides: `sectionWrapper sectionFullHeight card`,
+        sectionHeaderStyleOverrides: `
+        border-bottom border-secondary
+        text-center pb-2
+        col-auto display-5 sectionCustomHeader` 
+    }),
+
     new SectionViewModel({
         id: "work-history",
         title: "Work History",
@@ -32,6 +37,7 @@ export const sectionViewModels = [
         text-center pb-2
         col-auto display-5 sectionCustomHeader` 
     }),
+
     new SectionViewModel({
         id: "skills",
         title: "Skills",
@@ -42,6 +48,7 @@ export const sectionViewModels = [
         text-center pb-2
         col-auto display-5 sectionCustomHeader` 
     }),
+
     new SectionViewModel({
         id: "contact",
         title: "Contact",
@@ -52,4 +59,5 @@ export const sectionViewModels = [
         text-center pb-2
         col-auto display-5 sectionCustomHeader` 
     })
+
 ];

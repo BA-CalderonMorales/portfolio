@@ -1,78 +1,55 @@
 import { useRef, useLayoutEffect, useCallback } from "react";
 import { degreesToRadians, mix } from "popmotion";
 import * as THREE from "three";
-import Shape from "./Shape";
+import Shape, { ShapeTypes } from "./Shape";
 import Material from "./Material";
+import Lighting from "./Lighting";
 
 interface FloaterProps {
     p: number;
-    color: string;
+    color: THREE.Color | string;
     depth?: number;
     scale?: [radius: number, detail: number];
     theme?: string;
+    shape?: ShapeTypes;
 }
 
-export const Floater = (props : FloaterProps) => {
-
+export const Floater = (props: FloaterProps) => {
     const ref = useRef<THREE.Mesh>(null);
 
-    const floaterRef = useRef<THREE.OctahedronGeometry>(null);
-
     const updateLayout = useCallback(() => {
+        if (!ref.current) return; // Ensure ref.current is not null
 
         const distance = mix(1.75, 15, Math.random());
-
-        const yAngle = mix(
-            degreesToRadians(180),
-            degreesToRadians(50),
-            Math.random()
-        );
-
+        const yAngle = mix(degreesToRadians(180), degreesToRadians(50), Math.random());
         const xAngle = degreesToRadians(360) * props.p;
 
-        ref.current!.position.setFromSphericalCoords(distance, yAngle, xAngle);
+        ref.current.position.setFromSphericalCoords(distance, yAngle, xAngle);
+        ref.current.lookAt(0, 0, 0);
+        ref.current.updateMatrixWorld();
 
-        ref.current!.lookAt(0, 0, 0);
+        ref.current.scale.setScalar(0.4);
 
-        ref.current!.updateMatrixWorld();
-
-        floaterRef.current!.scale(0.05, 0.05, 0.05);
-        
         const depth = props.depth || 0; // Provide a default value for props.depth if it is undefined
-    
-        floaterRef.current!.center();
-    
-        floaterRef.current!.applyMatrix4(new THREE.Matrix4().makeTranslation(1, depth, 1));
-    
-        floaterRef.current!.computeVertexNormals();
-    
-        floaterRef.current!.normalizeNormals();
-    
-        floaterRef.current!.morphTargetsRelative = true;
-
-    }, [ref.current, floaterRef.current, props.p, props.color]);
+    }, [props.p, props.depth]);
 
     useLayoutEffect(() => {
-        
         updateLayout();
-
-    }, [props.color]);
-
+    }, [props.color, updateLayout]);
 
     return (
         <mesh ref={ref}>
-
             <Shape
-                octahedronRef={floaterRef}
-                shape='octahedron'
+                meshRef={ref}
+                shape={props.shape ?? 'octahedron'}
                 args={[props.scale?.[0] || 1, props.scale?.[1] || 0]}
-            />
-
-            <Material
-                type='basic'
                 color={props.color}
             />
-
+            <Lighting
+                type='ambient'
+                intensity={0.005}
+                color={typeof props.color === 'string' ? new THREE.Color(props.color) : props.color}
+            />
         </mesh>
     );
 };

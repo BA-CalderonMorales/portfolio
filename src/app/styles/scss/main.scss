@@ -167,11 +167,11 @@ body {
 
 /** Must be imported after adjustments to Bootstrap variables */
 @import 'bootstrap/scss/bootstrap.scss';
+@import './components/_backgroundBox.scss';
 @import './components/scene.scss';
 @import './components/navigation.scss';
 @import './components/section.scss';
 @import './components/content/content.scss';
-@import './components/content/about.scss';
 @import './components/content/contact.scss';
 @import './components/footer.scss';
 

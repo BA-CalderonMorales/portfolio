@@ -2,16 +2,21 @@ import React, { useRef, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
-const BubblingOrb: React.FC = () => {
-    const orbRef = useRef<THREE.Mesh>(null);
+interface BubblingOrbProps {
+    meshRef?: React.RefObject<THREE.Mesh>;
+    color: THREE.Color | string;
+}
+
+const BubblingOrb = (props : BubblingOrbProps) => {
+    const orbRef = useRef<THREE.Mesh>(props.meshRef?.current!);
     const bubbleRefs = useRef<THREE.Mesh[]>([]); // To hold the smaller bubble meshes
-    const bubbleCount = 20; // Initial number of smaller bubbles
-    const bubbleCreationInterval = 500; // Time in milliseconds to create a new bubble (increased for fewer bubbles)
+    const bubbleCount = 25; // Initial number of smaller bubbles
+    const bubbleCreationInterval = 250; // Time in milliseconds to create a new bubble (increased for fewer bubbles)
 
     // Function to create a new bubble
     const createBubble = () => {
-        const geometry = new THREE.SphereGeometry(Math.random() * 0.05 + 0.02, 16, 16); // Random size
-        const material = new THREE.MeshStandardMaterial({ color: 'lightblue', transparent: true, opacity: 0.8 });
+        const geometry = new THREE.SphereGeometry(Math.random() * 0.05 + 0.02, 24, 24); // Random size
+        const material = new THREE.MeshStandardMaterial({ color: props.color, transparent: true, opacity: 0.8 });
         const bubble = new THREE.Mesh(geometry, material);
 
         // Position the bubble at the center initially
@@ -59,8 +64,8 @@ const BubblingOrb: React.FC = () => {
     return (
         <>
             <mesh ref={orbRef}>
-                <sphereGeometry args={[0.5, 32, 32]} />
-                <meshStandardMaterial color="lightblue" />
+                <sphereGeometry args={[1.25, 32, 32]} />
+                <meshStandardMaterial color={props.color} />
             </mesh>
         </>
     );

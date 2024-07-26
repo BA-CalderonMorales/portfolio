@@ -6,9 +6,10 @@ import * as THREE from 'three';
 interface MorphingCubeProps {
     color?: THREE.Color | string;
     meshRef?: React.RefObject<THREE.Mesh | null>;
+    shadow?: boolean;
 }
 
-const MorphingCube = ({ color = 'lightblue', meshRef }: MorphingCubeProps) => {
+const MorphingCube = ({ color = 'lightblue', meshRef, shadow }: MorphingCubeProps) => {
     const currentMeshRef = useRef<THREE.Mesh | null>(meshRef?.current || null);
 
     // Create a cube geometry with morph targets
@@ -47,6 +48,7 @@ const MorphingCube = ({ color = 'lightblue', meshRef }: MorphingCubeProps) => {
             <meshPhongMaterial
                 color={color}
                 shininess={100}
+                shadowSide={shadow ? THREE.FrontSide : undefined}
             />
         </mesh>
     );

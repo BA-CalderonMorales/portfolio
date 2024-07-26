@@ -8,50 +8,33 @@ import Layout from './Layout/Layout';
 import { useLocalStorage } from '@/app/hooks/useLocalStorage';
 
 interface MainProps {
-
     children: React.ReactNode;
     viewModel?: AppViewModel;
-
 }
 
-export const Main = observer((props : MainProps) => {
-
+export const Main = observer((props: MainProps) => {
     const pathname = usePathname();
-
     const [path, setPath] = useLocalStorage('path', '');
-
     const backgroundBlurriness = useMemo(() => 0.25, []);
-
     const backgroundIntensity = useMemo(() => 0.5, []);
-
     const pathParts = useMemo(() => pathname.split("/"), [pathname]);
 
     const setCurrentPath = useCallback(() => {
-            
         if (props.viewModel?.setCurrentPath) {
-
             props.viewModel?.setCurrentPath(path);
-
         }
-
     }, [path, props.viewModel?.setCurrentPath]);
 
     useEffect(() => {
-
         setPath(pathParts[3] || ''); // home, about, work-history, skills, contact
-
     }, [pathParts, setPath]);
 
     useEffect(() => {
-
         setCurrentPath();
-        
     }, [path, setCurrentPath]);
 
     return (
-
         <Layout classes={`theme-${props.viewModel?.theme}`}>
-
             <Canvas
                 className={`
                     theme-${props.viewModel?.theme} threejs-animation
@@ -73,20 +56,12 @@ export const Main = observer((props : MainProps) => {
                     backgroundIntensity
                 }}
             >
-
                 <Scene />
-
             </Canvas>
 
             <main className={`theme-${props.viewModel?.theme} ${props.viewModel?.currentPath}`} data-testid='main-content'>
-
                 {props.children}
-
             </main>
-
         </Layout>
-
     );
-
 });
-

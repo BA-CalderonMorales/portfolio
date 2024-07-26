@@ -1,10 +1,11 @@
 import { useFrame, useThree } from "@react-three/fiber";
-import React, { useCallback, useEffect, useMemo, useRef } from "react";
+import React, { useCallback, useContext, useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
 import { AppViewModel } from "@/app/components/ViewModels/AppViewModel";
 import Shape from '@/app/components/Views/Shape'
 import Material from "@/app/components/Views/Material";
 import Lighting from "@/app/components/Views/Lighting";
+import { AppContext } from "@/app/context";
 
 interface CenterPieceProps {
     animationColor?: string;
@@ -13,6 +14,8 @@ interface CenterPieceProps {
 export const CenterPiece = ({ animationColor } : CenterPieceProps ) => {
 
     const { scene } = useThree((state) => state) as { scene: THREE.Scene };
+
+    const { appViewModel } = useContext(AppContext);
 
     const color = new THREE.Color(animationColor);
 
@@ -78,15 +81,23 @@ export const CenterPiece = ({ animationColor } : CenterPieceProps ) => {
 
     useEffect(() => {
 
-        scene.add(
-            outlineMesh
-        );
+        if (window.location.pathname.includes('/contact')) {
+
+            scene.add(
+                outlineMesh
+            );
+
+        }
 
         return () => {
 
-            scene.remove(
-                outlineMesh
-            );
+            if (window.location.pathname.includes('/contact')) {
+
+                scene.remove(
+                    outlineMesh
+                );
+
+            }
 
         };
 
@@ -137,7 +148,7 @@ export const CenterPiece = ({ animationColor } : CenterPieceProps ) => {
     const blobDelta = useRef<THREE.Group>(null);
     const blobEcho = useRef<THREE.Group>(null);
 
-    const generateShape = useCallback((shape : any) => {
+    const generateShape = (shape : any) => {
 
         return (
 
@@ -165,7 +176,7 @@ export const CenterPiece = ({ animationColor } : CenterPieceProps ) => {
                     forwardRef={pointLightAlpha}
                     type="point"
                     color={color}
-                    position={new THREE.Vector3(0, 0, 0)}
+                    position={new THREE.Vector3(10, 10, 10)}
                     intensity={0.45}
                 />
     
@@ -173,7 +184,7 @@ export const CenterPiece = ({ animationColor } : CenterPieceProps ) => {
                     forwardRef={pointLightBravo}
                     type="point"
                     color={color}
-                    position={new THREE.Vector3(0, 0, 0)}
+                    position={new THREE.Vector3(10, 10, 10)}
                     intensity={0.45}
                 />
     
@@ -181,7 +192,7 @@ export const CenterPiece = ({ animationColor } : CenterPieceProps ) => {
                     forwardRef={pointLightCharlie}
                     type="point"
                     color={color}
-                    position={new THREE.Vector3(0, 0, 0)}
+                    position={new THREE.Vector3(10, 10, 10)}
                     intensity={0.45}
                 />
     
@@ -198,38 +209,50 @@ export const CenterPiece = ({ animationColor } : CenterPieceProps ) => {
         );
 
 
-    }, [color, lightMap]);
-
-    const centerPieceGeometry = useMemo(() => {
-
-        return [
-            blobAlpha,
-            blobBravo,
-            blobCharlie,
-            blobDelta,
-            blobEcho
-        ].map((blob, index) => {
-
-            // adding more refs actually makes the animation more interesting
-
-            return generateShape(
-                {
-                    shape: 'bubbling-orb',
-                    color: color,
-                    meshRef: blob,
-                    key: index
-                }
-            )
-        });
-
-    }, []);
-
+    };
 
     return (
 
         <>
 
-            {centerPieceGeometry}
+            {
+                [
+                    blobAlpha,
+                    blobBravo,
+                    blobCharlie,
+                    blobDelta,
+                    blobEcho
+                ].map((blob, index) => {
+
+                    // adding more refs actually makes the animation more interesting
+
+                    if (window.location.pathname.includes('/about')) {
+
+                        return generateShape(
+                            {
+                                shape: 'fireflies',
+                                color:  appViewModel.theme === 'dracula' ? new THREE.Color(255, 0, 0) : color,
+                                meshRef: blob,
+                                key: index
+                            }
+                        );
+
+                    } 
+                        
+                    if (window.location.pathname.includes('/work-history')) {
+
+                        return generateShape(
+                            {
+                                shape: 'bubbling-orb',
+                                color: color,
+                                meshRef: blob,
+                                key: index
+                            }
+                        )
+
+                    }
+                })
+            }
 
         </>
     );
