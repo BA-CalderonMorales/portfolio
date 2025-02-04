@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { FooterViewModel } from "../ViewModels/FooterViewModel";
 import { observer } from "mobx-react";
-import { AppContext } from "@/app/context";
+import { AppContext } from "@/app/context/index";
 
 export const Footer = observer(({ viewModel }: { viewModel: FooterViewModel | null | undefined }) => {
 

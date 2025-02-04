@@ -1,0 +1,90 @@
+.home-life-section {
+  padding: 6rem 2rem;
+  /* Replace solid background with semi-transparent one */
+  background-color: rgba(248, 249, 250, 0.75);
+  backdrop-filter: blur(5px);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-header h2 {
+  font-size: 2.5rem;
+  color: #333;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.5rem;
+}
+
+.section-header h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 25%;
+  width: 50%;
+  height: 3px;
+  background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.section-body {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.life-item {
+  /* Make item backgrounds semi-transparent */
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  /* Add slightly more contrast for text */
+  backdrop-filter: blur(10px);
+}
+
+.life-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.life-item h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #1a1a2e;
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.life-item h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.life-item p {
+  color: #333;
+  line-height: 1.6;
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .home-life-section {
+    padding: 4rem 1rem;
+  }
+  
+  .section-header h2 {
+    font-size: 2rem;
+  }
+  
+  .section-body {
+    grid-template-columns: 1fr;
+  }
+}

@@ -158,11 +158,6 @@ body {
         }
     }
 
-    .contact,
-    .work-history,
-    .skills {
-        // height: 100% !important;
-    }
 }
 
 /** Must be imported after adjustments to Bootstrap variables */
@@ -174,6 +169,209 @@ body {
 @import './components/content/about.scss';
 @import './components/content/contact.scss';
 @import './components/footer.scss';
+
+// Fix scrolling issues
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  overflow: auto; // Allow scrolling
+}
+
+:root {
+  --nav-height: 70px; // Set navigation height variable
+  --section-width: 75%; /* Controls how wide sections are */
+  --section-max-width: 1200px; /* Maximum width for sections */
+  --section-spacing: 8vh; /* Space between sections */
+  --section-opacity: 0.9; /* Controls section background opacity */
+}
+
+/* Enhanced scroll container and section styling */
+.floating-scroll-container {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(var(--bs-secondary-rgb), 0.3) transparent;
+  /* Hide scrollbar for Chrome/Safari */
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(var(--bs-secondary-rgb), 0.3);
+    border-radius: 6px;
+  }
+  
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(var(--bs-secondary-rgb), 0.3) transparent;
+}
+
+/* Smooth scrolling container */
+.smooth-scroll-container {
+  scroll-snap-type: y proximity;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(var(--bs-secondary-rgb), 0.3) transparent;
+  
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(var(--bs-secondary-rgb), 0.3);
+    border-radius: 6px;
+  }
+}
+
+/* Welcome section styling */
+.welcome-section {
+  z-index: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  margin-bottom: 0;
+  padding-top: var(--nav-height, 70px);
+  
+  .welcome-content {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.floating-sections-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: calc(var(--nav-height) + 2rem);
+  padding-bottom: 4rem;
+  
+  /* Add more top padding when welcome is not shown */
+  &.no-welcome-padding {
+    padding-top: calc(var(--nav-height) + 6rem);
+  }
+}
+
+/* Style sections to appear as floating panels */
+.section {
+  width: var(--section-width);
+  max-width: var(--section-max-width);
+  min-height: auto;
+  margin-bottom: var(--section-spacing);
+  background-color: rgba(var(--bs-body-bg-rgb), var(--section-opacity));
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  scroll-snap-align: start;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Ensure content is centered and properly formatted */
+  .section-content {
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Style adjustments for different sections */
+  &.home-hero-section {
+    margin-top: 0; // Remove top margin since welcome section provides spacing
+    min-height: 60vh; /* Taller hero section for more prominence */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  &.home-life-section {
+    width: calc(var(--section-width) - 5%); /* Slightly narrower */
+    margin-top: 15vh; /* More space between sections */
+  }
+}
+
+/* Updated welcome overlay animations */
+.welcome-overlay {
+  transition: opacity 0.8s ease-in-out;
+  
+  .welcome-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  p {
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 600px;
+    text-align: center;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+  }
+}
+
+/* Hero styling improvements */
+.hero-content {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  
+  .hero-title {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.85;
+  }
+  
+  .hero-description {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    line-height: 1.8;
+  }
+  
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    
+    .btn {
+      min-width: 150px;
+      padding: 0.75rem 1.5rem;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        transform: translateY(-3px);
+      }
+    }
+  }
+}
+
+// Section specific adjustments
+.section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
 html, body {
   height: 100%;

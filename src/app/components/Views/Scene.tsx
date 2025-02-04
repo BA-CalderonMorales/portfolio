@@ -5,7 +5,7 @@ import { degreesToRadians } from "popmotion";
 import { CenterPiece } from "./CenterPiece";
 import * as THREE from "three";
 import FloaterWrapper from "./FloaterWrapper";
-import { AppContext } from "@/app/context";
+import { AppContext } from "@/app/context/index";
 
 export default function Scene({ numStars = 250 }) {
 

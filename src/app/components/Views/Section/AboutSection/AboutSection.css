@@ -1,0 +1,199 @@
+.about-section {
+  padding: 6rem 2rem;
+  min-height: 100vh;
+  /* Semi-transparent background to allow Three.js to show through */
+  background-color: rgba(26, 26, 46, 0.5);
+  backdrop-filter: blur(5px);
+  color: #ffffff;
+}
+
+.about-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.about-header h2 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #4facfe;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  position: relative;
+  display: inline-block;
+  padding-bottom: 1rem;
+}
+
+.about-header h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 25%;
+  width: 50%;
+  height: 3px;
+  background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.about-subtitle {
+  font-size: 1.2rem;
+  color: #e0e0e0;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.about-content {
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+  margin-bottom: 4rem;
+}
+
+.about-image-container {
+  flex: 1;
+  text-align: center;
+}
+
+.about-profile-image {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid rgba(79, 172, 254, 0.5);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.about-text {
+  flex: 2;
+}
+
+.about-text p {
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #f0f0f0;
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.7);
+}
+
+/* Skills Section */
+.skills-section {
+  padding-top: 2rem;
+}
+
+.skills-section h3 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #4facfe;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.skill-item {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 1.5rem;
+  backdrop-filter: blur(10px);
+}
+
+.skill-name {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.7rem;
+  color: #ffffff;
+}
+
+.skill-bar {
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.skill-progress {
+  height: 100%;
+  background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+  border-radius: 4px;
+  transition: width 1.5s ease-in-out;
+}
+
+@media (max-width: 992px) {
+  .about-content {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .about-image-container,
+  .about-text {
+    flex: none;
+    width: 100%;
+  }
+  
+  .about-profile-image {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-section {
+    padding: 4rem 1rem;
+  }
+  
+  .about-header h2 {
+    font-size: 2.2rem;
+  }
+  
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.about-text p {
+  animation: slideInLeft 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+.about-text p:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+.about-text p:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.about-text p:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+.skill-item {
+  animation: fadeIn 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,6 +1,13 @@
 import {action, makeObservable, observable} from "mobx";
 import { AppViewModel } from "./AppViewModel";
 
+export enum NavigationLinkType {
+    HOME = 'home',
+    ABOUT = 'about',
+    CONTACT = 'contact',
+    THEME = 'theme'
+}
+
 export interface NavLink {
     id: string,
     url: string,
@@ -19,20 +26,29 @@ export class NavigationViewModel {
 
     brand: string = "My Portfolio";
 
-    constructor(links: NavLink[]) {
-        this.links = links;
+    constructor(links: NavLink[] = new Array<NavLink>()) {
+        this.links = this.validateLinks(links);
 
         makeObservable(this, {
-
             // observables
             links: observable,
-
+            
             // actions
             clickLink: action
-
         });
+    }
 
-    } 
+    /**
+     * Validates links to ensure only allowed types from NavigationLinkType are used
+     * @param links The links to validate
+     * @returns Links that match the allowed types
+     */
+    private validateLinks(links: NavLink[]): NavLink[] {
+        // Simply filter links to only include those with IDs from our enum
+        return links?.filter(link => 
+            Object.values(NavigationLinkType).includes(link.id as NavigationLinkType)
+        ) || [];
+    }
 
     clickLink = (type?: string, appViewModel?: AppViewModel) => {
 
@@ -42,10 +58,6 @@ export class NavigationViewModel {
 
         if (!type) {
             return;
-        }
-
-        if (type === 'resume') {
-            appViewModel?.downloadResume();
         }
 
     };

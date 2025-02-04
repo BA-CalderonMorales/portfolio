@@ -1,26 +1,18 @@
 const nextConfig = {
-
     rewrites: async () => {
         return [
+            // v1 routes
             {
                 source: '/home',
-                destination: '/routes/v1/home',
+                destination: '/routes/home',
             },
             {
                 source: '/about',
-                destination: '/routes/v1/about',
+                destination: '/routes/about',
             },
             {
                 source: '/contact',
-                destination: '/routes/v1/contact',
-            },
-            {
-                source: '/work-history',
-                destination: '/routes/v1/work-history',
-            },
-            {
-                source: '/skills',
-                destination: '/routes/v1/skills',
+                destination: '/routes/contact',
             }
         ]
     },
@@ -33,7 +25,6 @@ const nextConfig = {
             }
         ];
     }
-
 };
 
 export default nextConfig;

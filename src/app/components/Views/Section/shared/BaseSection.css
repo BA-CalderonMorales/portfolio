@@ -1,0 +1,52 @@
+.section {
+  position: relative;
+  overflow: hidden;
+  /* Make the section transparent by default */
+  background-color: transparent;
+}
+
+.section-content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.section.dark-mode {
+  /* For dark mode, use a semi-transparent dark background */
+  background-color: rgba(18, 18, 18, 0.7);
+  backdrop-filter: blur(5px);
+  color: #f0f0f0;
+}
+
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}

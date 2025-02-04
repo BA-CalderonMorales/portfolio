@@ -1,12 +1,19 @@
 "use client"
 
 import React from 'react';
-import Redirect from '@/app/components/Views/Redirect';
 
+/**
+ * RedirectPage Component
+ * 
+ * Currently displays a loading message while redirecting.
+ */
 const RedirectPage = () => {
 
     return (
-        <Redirect />
+        <div>
+            <h1>You are now being redirected...</h1>
+            <p>Thank you for your paticence...</p>
+        </div>
     );
 
 };

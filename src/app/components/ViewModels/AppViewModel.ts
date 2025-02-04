@@ -25,7 +25,6 @@ export class AppViewModel {
             theme: observable,
 
             // actions
-            downloadResume: action,
             checkLocalStorage: action,
             getAnimationColor: action,
             initialize: action,
@@ -107,40 +106,6 @@ export class AppViewModel {
         }
 
         window.localStorage.setItem('my-portfolio-theme', this.theme);
-
-    };
-
-    downloadResume = async () => {
-        
-        try {
-
-            const api = new API({
-                    
-                logger: (message: string) => Logger.log(message),
-        
-                responseHandler: (response: Response) => new ResponseHandler(response)
-
-            });
-    
-            await api.downloadFile(
-                'https://api.github.com/repos/BA-CalderonMorales/resume/contents/Brandon_Calderon_Morales_Resume_2024.pdf?ref=develop',
-                'Brandon_Calderon_Morales_Resume_2024.pdf'
-            );    
-
-
-        } catch (error) {
-
-            console.error('Error downloading the file:', error);
-
-            alert("There was an error downloading the resume. You can always just go to my GitHub. I have a copy of my resume there as well.");
-
-        } finally {
-
-            const splitPath = window.location.pathname.split("#"); // Remove the hash from the URL
-
-            window.history.pushState({}, '', splitPath[0]);
-
-        }
 
     };
 

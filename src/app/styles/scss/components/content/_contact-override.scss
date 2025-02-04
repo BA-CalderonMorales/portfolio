@@ -1,0 +1,50 @@
+// This file overrides global contact styles for the v2 components
+// Import this after the original _contact.scss
+
+// Disable global contact styles when inside v2 component
+.contact-section {
+    // Reset any unwanted global styles for the v2 contact section
+    .contact-info {
+        a {
+            color: inherit; // Use the color defined in ContactSection.css
+        }
+        
+        ul {
+            li {
+                display: flex; // Keep this from global
+                align-items: center; // Keep this from global
+                justify-content: center; // Keep this from global
+                padding: .75rem; // Keep this from global
+                color: inherit; // Use local component color
+            }
+        }
+    }
+}
+
+// Optional: completely disable original contact styles for v2 pages
+body.v2-page {
+    .contact-info {
+        // Reset all properties to default or inherit from component styles
+        display: inherit;
+        row-gap: inherit;
+        justify-content: inherit;
+        align-items: inherit;
+        text-align: inherit;
+        
+        a {
+            color: inherit !important;
+        }
+        
+        ul {
+            list-style-type: inherit;
+            padding: inherit;
+            
+            li {
+                display: inherit;
+                align-items: inherit;
+                justify-content: inherit;
+                padding: inherit;
+            }
+        }
+    }
+}

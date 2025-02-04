@@ -1,0 +1,126 @@
+.education-section {
+  padding: 6rem 2rem;
+  /* Semi-transparent background to complement other sections */
+  background-color: rgba(26, 26, 46, 0.5);
+  backdrop-filter: blur(5px);
+  color: #ffffff;
+}
+
+.education-section .section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.education-section .section-header h2 {
+  font-size: 2.5rem;
+  color: #4facfe;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.5rem;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.education-section .section-header h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 25%;
+  width: 50%;
+  height: 3px;
+  background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.education-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.education-card {
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.education-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+}
+
+.education-info {
+  flex: 3;
+}
+
+.education-logo {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.education-logo img {
+  max-width: 100px;
+  max-height: 100px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.3));
+}
+
+.education-year {
+  display: inline-block;
+  padding: 6px 12px;
+  background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+  color: white;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.education-degree {
+  font-size: 1.4rem;
+  color: #ffffff;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+}
+
+.education-institution {
+  font-size: 1.1rem;
+  color: #e0e0e0;
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.education-description {
+  margin-top: 10px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #cccccc;
+}
+
+@media screen and (max-width: 768px) {
+  .education-card {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .education-logo {
+    margin-top: 1.5rem;
+  }
+  
+  .education-section {
+    padding: 4rem 1rem;
+  }
+  
+  .education-section .section-header h2 {
+    font-size: 2.2rem;
+  }
+}
