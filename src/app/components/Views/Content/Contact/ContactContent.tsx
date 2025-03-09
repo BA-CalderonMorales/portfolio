@@ -54,12 +54,6 @@ export const ContactContent = observer((): React.JSX.Element => {
 
                         </li>
 
-                        <li>
-
-                            Download my resume
-
-                        </li>
-
                     </ul>
 
                 </div>
