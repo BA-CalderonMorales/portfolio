@@ -54,23 +54,6 @@ export const ContactContent = observer((): React.JSX.Element => {
 
                         </li>
 
-                        <li>
-
-                            Download my resume
-
-                        </li>
-
-                        <li id="resume">
-
-                            <Link
-                                href="#resume"
-                                onClick={appViewModel.downloadResume}
-                            >
-                                Resume
-                            </Link>
-
-                        </li>
-
                     </ul>
 
                 </div>
