@@ -6,7 +6,6 @@ export const navigationViewModel = new NavigationViewModel([
     {id: 'work-history', url: '/work-history', text: 'Work History'},
     {id: 'skills', url: '/skills', text: "Skills"},
     {id: 'contact', url: '/contact', text: "Contact"},
-    {id: 'resume', url: '#resume', text: "Resume"},
     {id: 'theme', url: '#', text: "Theme", options: [
         {id: 'modern', text: 'Modern', url: '#'},
         {id: 'dracula', text: 'Dracula', url: '#'},
